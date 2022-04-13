@@ -18,7 +18,7 @@ namespace Kursach.ViewModels.Base
         }
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
         {
-            if (Equals(field,value))
+            if (Equals(field,value)) 
             {
                 return false; 
             }
