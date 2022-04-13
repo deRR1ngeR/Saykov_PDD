@@ -1,0 +1,68 @@
+﻿<Page x:Class="Kursach.Forfeit_page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursach"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Forfeit_page"
+      Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" ShowGridLines="true">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="47*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" Text="САЙКОВ" FontSize="25" FontFamily="arial"/>
+                <Image Source="imgs/og.png" Height="70" Width="70"  />
+                <TextBlock VerticalAlignment="Center" Text="ПДД" FontSize="25" FontFamily="Arial"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="181*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel  HorizontalAlignment="Left" Width="366" Grid.ColumnSpan="2" Margin="34,0,0,0" >
+                <Image Source="imgs/up.png" Height="131" Width="354" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.ColumnSpan="2" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="52*"/>
+                <RowDefinition Height="281*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="300*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="1"  Margin="10">
+                <TextBlock Text="Административная ответственность за нарушение Правил дорожного движения." FontSize="15" HorizontalAlignment="Left" Margin="10 7 0 0" FontFamily="Arial" />
+            </StackPanel>
+            <StackPanel x:Name="SDA" Grid.Row="1" Grid.Column="1" Background="#55ACBE" Margin="10" CanVerticallyScroll="True">
+            
+            </StackPanel >
+            <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
+                <Button Content="ТРЕНИРОВКА ПДД" FontFamily="Arial Bold" FontSize="17"  Background="Red" Foreground="White" Height="50" Width="166" Margin="0 15 0 0"/>
+                <Button Content="ИЗМЕНЕНИЯ В ПДД " FontFamily="Arial Bold" FontSize="15" BorderThickness="0 0 0 0" Background="#55ACBE" Foreground="White" Height="50" Width="160" Margin="0 25 0 0"/>
+                <Button Content="ВЫХОД" FontFamily="Arial Bold" FontSize="17" BorderThickness="0 0 0 0" Background="#55ACBE" Foreground="White" Height="50" Width="160" Margin="0 25 0 0"/>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

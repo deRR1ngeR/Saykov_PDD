@@ -1,0 +1,67 @@
+﻿<Window x:Class="Kursach.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursach"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800">
+
+    
+    <Grid ShowGridLines="True">
+        <Frame ></Frame>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="131*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="243*"/>
+            <RowDefinition Height="91*"/>
+        </Grid.RowDefinitions>
+
+        <Grid ShowGridLines="FALSE" Grid.Row="0" Margin="257,-50,257,170" Grid.RowSpan="2" Grid.ColumnSpan="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380*"/>
+                <ColumnDefinition Width="240*"/>
+                <ColumnDefinition Width="380*"/>
+
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,68,0,75" >
+                <Image Source="/imgs/og.png"  />
+            </StackPanel>
+            <TextBlock Grid.Column="0"  TextAlignment="Right" VerticalAlignment="Center" Text="Сайков" FontFamily="Rubik" FontSize="30"/>
+            <TextBlock Grid.Column="2" TextAlignment="Left" VerticalAlignment="Center" Text="ПДД" FontFamily="Rubik" FontSize="30"/>
+
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="184*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.ColumnSpan="3" Grid.Row="0">
+                <TextBlock Text="Добро пожаловать" FontSize="22" TextAlignment="Center" Margin="0 25" FontFamily="Tahoma" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,25,0,4" Grid.Row="1" Grid.Column="1">
+               
+                <TextBlock Text="Логин" FontSize="16"/>
+                <TextBox Margin="0 5" BorderThickness="0 0 0 1"/>
+                <TextBlock Text="Пароль" FontSize="16"/>
+                <PasswordBox Margin="0 5" BorderThickness="0 0 0 1"/>
+                <Button Content="Войти" FontSize="16" Width="70" Margin="0 5" Click="Button_Click"/>
+                <Button Content="Регистрация" FontSize="12" Width="70" Background="White" Margin="0 -5" BorderThickness="0" Height="18"/>
+               
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+    
+</Window>

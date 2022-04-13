@@ -1,0 +1,92 @@
+﻿<Page x:Class="Kursach.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursach"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StartPagex" Background="White">
+
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" ShowGridLines="true">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="47*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" Text="САЙКОВ" FontSize="25" FontFamily="arial"/>
+                <Image Source="imgs/og.png" Height="70" Width="70"  />
+                <TextBlock VerticalAlignment="Center" Text="ПДД" FontSize="25" FontFamily="Arial"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="185">
+                <Button Margin="15 0 0 0" BorderThickness="0" Height="35" Width="170" HorizontalAlignment="Right" Content="Категория 'B'" Foreground="White" Background="#55ACBE" FontSize="15" FontFamily="Arial Bold"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="35" Width="170">
+                <Button Margin="0 0 0 0" BorderThickness="0" Height="35" Width="170" HorizontalAlignment="Left" Content="Категория 'C'" Foreground="#000" Background="White" FontSize="15" FontFamily="Arial Bold" />
+            </StackPanel>
+        </Grid>
+
+        <Grid ShowGridLines="true" Grid.Column="1" Grid.Row="1" Margin="5 0 0 0" Background="#55ACBE">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.45*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Bottom">
+                <Button Grid.Row="0" Width="300px"  Height="70px" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Padding="25 0 0 0" VerticalAlignment="Bottom" Background="Red" Content="ЗАПУСК" Foreground="White" FontSize="30" FontFamily="Arial Bold" >
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="17" />
+                    </Button.Effect>
+                </Button>
+            </StackPanel>
+            <!---->
+            <Grid Grid.Column="1" Grid.Row="1">
+                <StackPanel Margin="70 50 0 0" >
+                    <Button Content="ИЗМЕНЕНИЯ В ПДД" FontSize="23" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0"/>
+                    <Button Content="РАЗМЕРЫ ШТРАФОВ" FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0"/>
+                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104"/>
+
+
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="181*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel  HorizontalAlignment="Left" Width="366" Grid.ColumnSpan="2" Margin="34,0,0,0" >
+                <Image Source="imgs/up.png" Height="131" Width="354" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Background="#55ACBE" Margin="0 0 5 0" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="262*"/>
+                <RowDefinition Height="71*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Image  Source="/imgs/car.png" Height="250" Width="330"  Grid.ColumnSpan="2"/>
+                <Line X1="40" Y1="-30" X2="370" Y2="-30" Stroke="Gray"  />
+            </StackPanel>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="-120 0 0 0 ">
+
+                <TextBlock Text= "ООО КУРСОВАЯ BY САЙКО" Foreground="#9DEBEF" FontFamily="Arial" FontSize="15"/>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
