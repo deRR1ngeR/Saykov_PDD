@@ -23,4 +23,11 @@
     <Resource Include="imgs\up.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

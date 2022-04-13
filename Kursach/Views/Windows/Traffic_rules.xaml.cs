@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Kursach
+namespace Kursach.Views
 {
     /// <summary>
     /// Логика взаимодействия для Traffic_rules.xaml

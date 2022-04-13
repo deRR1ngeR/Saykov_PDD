@@ -12,11 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Kursach
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для StartWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -27,10 +26,15 @@ namespace Kursach
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var newWindow = new MainMenu();
-            newWindow.Owner = this;
-            newWindow.Show();
-            this.Hide();
+            TrainingPage tpage = new TrainingPage();
         }
     }
 }
+    //  private void Button_Click(object sender, RoutedEventArgs e)
+    //  {
+    //      var newWindow = new MainMenu();
+    //      newWindow.Owner = this;
+    //      newWindow.Show();
+    //      this.Hide();
+    //  }
+

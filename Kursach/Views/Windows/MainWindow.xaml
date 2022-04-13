@@ -9,7 +9,6 @@
 
     
     <Grid ShowGridLines="True">
-        <Frame ></Frame>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="131*"/>
             <ColumnDefinition Width="145*"/>
