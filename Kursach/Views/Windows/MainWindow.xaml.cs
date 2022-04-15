@@ -17,7 +17,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для StartWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -30,11 +30,5 @@ namespace Kursach
         }
     }
 }
-    //  private void Button_Click(object sender, RoutedEventArgs e)
-    //  {
-    //      var newWindow = new MainMenu();
-    //      newWindow.Owner = this;
-    //      newWindow.Show();
-    //      this.Hide();
-    //  }
+
 

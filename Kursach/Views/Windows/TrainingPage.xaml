@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" Text="САЙКОВ" FontSize="25" FontFamily="arial"/>
-                <Image Source="imgs/og.png" Height="70" Width="70"  />
+                <Image Source="../../imgs/og.png" Height="70" Width="70"  />
                 <TextBlock VerticalAlignment="Center" Text="ПДД" FontSize="25" FontFamily="Arial"/>
             </StackPanel>
         </Grid>
@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="181*"/>
             </Grid.ColumnDefinitions>
             <StackPanel  HorizontalAlignment="Left" Width="366" Grid.ColumnSpan="2" Margin="34,0,0,0" >
-                <Image Source="imgs/up.png" Height="131" Width="354" />
+                <Image Source="../../imgs/up.png" Height="131" Width="354" />
             </StackPanel>
         </Grid>
         <Grid Grid.ColumnSpan="2" Grid.Row="1" ShowGridLines="true">

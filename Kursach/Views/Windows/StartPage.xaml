@@ -3,11 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Kursach.ViewModels"
       xmlns:local="clr-namespace:Kursach"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartPagex" Background="White">
-
+    <Page.DataContext>
+        <vm:StartPageViewModel/>
+    </Page.DataContext>
+    
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,7 +32,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" Text="САЙКОВ" FontSize="25" FontFamily="arial"/>
-                <Image Source="imgs/og.png" Height="70" Width="70"  />
+                <Image Source="../../imgs/og.png" Height="70" Width="70"  />
                 <TextBlock VerticalAlignment="Center" Text="ПДД" FontSize="25" FontFamily="Arial"/>
 
             </StackPanel>
@@ -46,18 +50,24 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel VerticalAlignment="Bottom">
-                <Button Grid.Row="0" Width="300px"  Height="70px" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Padding="25 0 0 0" VerticalAlignment="Bottom" Background="Red" Content="ЗАПУСК" Foreground="White" FontSize="30" FontFamily="Arial Bold" >
+                <Button Grid.Row="0" Width="300px"  Height="70px" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Padding="25 0 0 0" VerticalAlignment="Bottom" Background="Red"   >
+                    <Hyperlink NavigateUri="TrainingPage.xaml" TextDecorations="None" Foreground="White" FontSize="30" FontFamily="Arial Bold">Запуск</Hyperlink>
                     <Button.Effect>
                         <DropShadowEffect BlurRadius="17" />
                     </Button.Effect>
                 </Button>
             </StackPanel>
-            <!---->
+           
             <Grid Grid.Column="1" Grid.Row="1">
                 <StackPanel Margin="70 50 0 0" >
-                    <Button Content="ИЗМЕНЕНИЯ В ПДД" FontSize="23" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0"/>
-                    <Button Content="РАЗМЕРЫ ШТРАФОВ" FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0"/>
-                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104"/>
+                    <Button   Background="#55ACBE" BorderThickness="0" Width="230">
+                        <Hyperlink NavigateUri="Traffic_rules.xaml" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">ИЗМЕНЕНИЯ В ПДД"</Hyperlink>
+                    </Button>
+                    <Button  FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="249">
+                        <Hyperlink NavigateUri="Forfeit_page" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+
+                    </Button>
+                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104" Command="{Binding CloseApplicationCommand}"/>
 
 
                 </StackPanel>
@@ -70,7 +80,7 @@
                 <ColumnDefinition Width="181*"/>
             </Grid.ColumnDefinitions>
             <StackPanel  HorizontalAlignment="Left" Width="366" Grid.ColumnSpan="2" Margin="34,0,0,0" >
-                <Image Source="imgs/up.png" Height="131" Width="354" />
+                <Image Source="../../imgs/up.png" Height="131" Width="354" />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Background="#55ACBE" Margin="0 0 5 0" ShowGridLines="True">
