@@ -14,7 +14,7 @@ namespace Kursach.ViewModels
         public MainWindowViewModel()
         {
             #region Комманды
-            OpenStartPage = new RelayCommand(OnOpenStartPageExecuted, CanOpenStartPageExecute);
+           
             #endregion
         }
 
@@ -28,16 +28,6 @@ namespace Kursach.ViewModels
         #endregion
 
         #region Комманды
-
-        #region Открытие страницы главного меню
-        public ICommand OpenStartPage;
-
-        public void OnOpenStartPageExecuted(object p)
-        {
-           
-        }
-        public bool CanOpenStartPageExecute(object p) => true;
-        #endregion
 
         #endregion
     }

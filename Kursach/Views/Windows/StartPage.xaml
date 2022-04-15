@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:Kursach.ViewModels"
+      xmlns:cmd="clr-namespace:Kursach.Infrastructure.Commands"
       xmlns:local="clr-namespace:Kursach"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -64,10 +65,14 @@
                         <Hyperlink NavigateUri="Traffic_rules.xaml" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">ИЗМЕНЕНИЯ В ПДД"</Hyperlink>
                     </Button>
                     <Button  FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="249">
-                        <Hyperlink NavigateUri="Forfeit_page" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+                        <Hyperlink NavigateUri="Forfeit_page.xaml" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
 
                     </Button>
-                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104" Command="{Binding CloseApplicationCommand}"/>
+                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104" >
+                        <Button.Command>
+                            <cmd:CloseApplicationCommand/>
+                        </Button.Command>
+                    </Button>
 
 
                 </StackPanel>

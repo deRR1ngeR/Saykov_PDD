@@ -14,23 +14,13 @@ namespace Kursach.ViewModels
     {
         #region Комманды
 
-        #region Закрыть приложение
-        public ICommand CloseApplicationCommand { get; }
-
-        public bool CanCloseApplicationCommandExecute(object p) => true;
-        public void OnCloseApplicationCommandExecuted(object p)
-        {
-            Application.Current.Shutdown();
-        }
-        #endregion
+      
 
         #endregion
 
         public StartPageViewModel()
         {
-            #region Комманды
-            CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-            #endregion
+          
         }
     }
 }

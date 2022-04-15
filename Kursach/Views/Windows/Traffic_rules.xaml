@@ -61,9 +61,16 @@
             </StackPanel >
             </ScrollViewer>
             <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
-                <Button Content="ТРЕНИРОВКА ПДД" FontFamily="Arial Bold" FontSize="17"  Background="Red" Foreground="White" Height="50" Width="166" Margin="0 15 0 0"/>
-                <Button Content="РАЗМЕРЫ ШТРАФОВ" FontFamily="Arial Bold" FontSize="15" BorderThickness="0 0 0 0" Background="#55ACBE" Foreground="White" Height="50" Width="166" Margin="0 25 0 0"/>
-                <Button Content="ВЫХОД" FontFamily="Arial Bold" FontSize="17" BorderThickness="0 0 0 0" Background="#55ACBE" Foreground="White" Height="50" Width="160" Margin="0 25 0 0"/>
+                <Button  Background="Red"  Height="50" Width="166" Margin="0 15 0 0">
+                    <Hyperlink NavigateUri="TrainingPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="17">ТРЕНИРОВКА ПДД</Hyperlink>
+                </Button>
+                <Button  BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="166" Margin="0 25 0 0">
+                    <Hyperlink  NavigateUri="Traffic_rules.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="15">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+                </Button>
+                <Button   BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="160" Margin="0 25 0 0">
+                    <Hyperlink  NavigateUri="StartPage.xaml" TextDecorations="None" Foreground="White" FontFamily="Arial Bold" FontSize="17">ВЫХОД</Hyperlink>
+
+                </Button>
 
             </StackPanel>
         </Grid>
