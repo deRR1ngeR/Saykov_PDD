@@ -62,13 +62,13 @@
             </ScrollViewer>
             <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
                 <Button  Background="Red"  Height="50" Width="166" Margin="0 15 0 0">
-                    <Hyperlink NavigateUri="TrainingPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="17">ТРЕНИРОВКА ПДД</Hyperlink>
+                    <Hyperlink NavigateUri="TrainingPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="14">ТРЕНИРОВКА ПДД</Hyperlink>
                 </Button>
                 <Button  BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="166" Margin="0 25 0 0">
-                    <Hyperlink  NavigateUri="Traffic_rules.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="15">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+                    <Hyperlink  NavigateUri="Traffic_rules.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="13">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
                 </Button>
                 <Button   BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="160" Margin="0 25 0 0">
-                    <Hyperlink  NavigateUri="StartPage.xaml" TextDecorations="None" Foreground="White" FontFamily="Arial Bold" FontSize="17">ВЫХОД</Hyperlink>
+                    <Hyperlink  NavigateUri="StartPage.xaml" TextDecorations="None" Foreground="White"  FontFamily="Arial Bold" FontSize="15">ВЫХОД В МЕНЮ</Hyperlink>
 
                 </Button>
 

@@ -62,7 +62,7 @@
                 <TextBlock>
                 <Hyperlink NavigateUri="StartPage.xaml" TextDecorations="None" >Войти</Hyperlink>
                 </TextBlock>
-                <Button Content="Войти" FontSize="16" Width="70" Margin="0 5" />
+                <Button Content="Войти" FontSize="16" Width="80" Margin="0 5" />
                 <Button  Content="Регистрация" FontSize="12" Width="70" Background="White" Margin="0 -5" BorderThickness="0" Height="18"/>
                
 

@@ -12,7 +12,7 @@
     <Page.DataContext>
         <vm:StartPageViewModel/>
     </Page.DataContext>
-    
+
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -58,17 +58,17 @@
                     </Button.Effect>
                 </Button>
             </StackPanel>
-           
+
             <Grid Grid.Column="1" Grid.Row="1">
-                <StackPanel Margin="70 50 0 0" >
-                    <Button   Background="#55ACBE" BorderThickness="0" Width="230">
-                        <Hyperlink NavigateUri="Traffic_rules.xaml" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">ИЗМЕНЕНИЯ В ПДД"</Hyperlink>
+                <StackPanel Margin="0,50,0,0" HorizontalAlignment="Right" Width="338" >
+                    <Button   Background="#55ACBE" BorderThickness="0 0 0 1" Width="265">
+                        <Hyperlink NavigateUri="Traffic_rules.xaml" TextDecorations="none"  FontSize="23" FontFamily="Arial Bold" Foreground="White">ИЗМЕНЕНИЯ В ПДД</Hyperlink>
                     </Button>
-                    <Button  FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="249">
+                    <Button  FontSize="23" Margin="15 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0 0 0 1" Width="281">
                         <Hyperlink NavigateUri="Forfeit_page.xaml" TextDecorations="none" FontSize="23" FontFamily="Arial Bold" Foreground="White">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
 
                     </Button>
-                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0" Width="104" >
+                    <Button Content="ВЫХОД" FontSize="23" Margin="-140 15 0 0" FontFamily="Arial Bold" Foreground="White" Background="#55ACBE" BorderThickness="0 0 0 1" Width="125" >
                         <Button.Command>
                             <cmd:CloseApplicationCommand/>
                         </Button.Command>
