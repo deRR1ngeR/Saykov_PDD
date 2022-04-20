@@ -23,11 +23,6 @@ namespace Kursach
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TrainingPage tpage = new TrainingPage();
-        }
     }
 }
 
