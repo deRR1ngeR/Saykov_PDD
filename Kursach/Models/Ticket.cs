@@ -8,7 +8,8 @@ namespace Kursach.Models
 {
     internal class Ticket
     {
-        public Guid Ticket_id  { get; set; }
-        public string Ticket_result  { get; set; }
+        public int TicketId  { get; set; }
+        public string? Ticket_result  { get; set; }
+        public List<User>? User { get; set; }
     }
 }

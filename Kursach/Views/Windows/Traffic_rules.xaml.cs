@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Kursach.Models;
+using System.Data.Entity;
 namespace Kursach
 {
     /// <summary>
@@ -23,6 +24,7 @@ namespace Kursach
         public Traffic_rules()
         {
             InitializeComponent();
+
         }
     }
 }

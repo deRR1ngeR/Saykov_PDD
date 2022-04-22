@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class Exam_results
+    internal class PDD_Fine
     {
         [Key]
-        public  List<Exam>? results { get; set; }
+        public int Fine_id { get; set; }
+        public string? Fine_text { get; set; }
+
     }
 }

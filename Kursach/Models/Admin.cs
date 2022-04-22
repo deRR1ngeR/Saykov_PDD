@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class User
+    internal class Admin
     {
-        public int UserId { get; set; }
-        public  int Login_id { get; set; }
+        public int AdminId { get; set; }
+        public int Login_Id { get; set; }
         public string? Surname { get; set; }
         public string? Name { get; set; }
         public string? Patronim { get; set; }
+        public DateTime Birthday { get; set; }
+        public string? Phone_number { get; set; }
+        public DateTime Date_of_entry { get; set; }
         public Login? Login { get; set; }
-        public List<Ticket>? Ticket_Results { get; set; }
-        public List<Exam>? Exam_Resilts { get; set;}
     }
 }

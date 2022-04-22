@@ -8,8 +8,10 @@ namespace Kursach.Models
 {
     internal class Ticket_Exam
     {
-        public Guid Id { get; set; }
-        public Ticket Ticket_Id { get; set; }
-        public Exam Exam_id { get; set; }
+        public int Ticket_ExamId { get; set; }
+        public int Ticket_Id { get; set; }
+        public int Exam_id { get; set; }
+        public Ticket? Ticket { get; set; }
+        public Exam? Exam { get; set; }
     }
 }

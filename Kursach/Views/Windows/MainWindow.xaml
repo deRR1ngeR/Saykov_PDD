@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Kursach.ViewModels"
-        xmlns:local="clr-namespace:Kursach"
-        mc:Ignorable="d"
+      mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
       ShowsNavigationUI="False">
     <Page.DataContext>
