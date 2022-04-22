@@ -11,7 +11,7 @@ namespace Kursach.Models
     {
         [Key]
         public int Fine_id { get; set; }
-        public string? Fine_text { get; set; }
+        public string? Fine_Text { get; set; }
 
     }
 }

@@ -10,6 +10,6 @@ namespace Kursach.Models
     internal class Exam_results
     {
         [Key]
-        public  List<Exam>? results { get; set; }
+        public  List<Exam>? Exam_Results { get; set; }
     }
 }

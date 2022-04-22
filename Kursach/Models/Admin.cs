@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,9 @@ namespace Kursach.Models
 {
     internal class Admin
     {
-        public int AdminId { get; set; }
-        public int Login_Id { get; set; }
+        [Key]
+        public int Admin_id { get; set; }
+        public int Login_id { get; set; }
         public string? Surname { get; set; }
         public string? Name { get; set; }
         public string? Patronim { get; set; }

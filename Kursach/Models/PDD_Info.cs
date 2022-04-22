@@ -10,9 +10,8 @@ namespace Kursach.Models
     internal class PDD_Info
     {
         [Key]
-        public int InfoId { get; set; }
+        public int PDD_id { get; set; }
         public string? PDD_Text { get; set; }
         public string? PDD_img { get; set; }
-        
     }
 }
