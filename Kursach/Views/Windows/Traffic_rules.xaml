@@ -68,8 +68,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5">
-                                    <TextBlock FontSize="18" Text="{Binding Path=PDD_Text}" />
-                                    
+                                    <TextBlock FontSize="18" Text="{Binding Path=PddText}" TextWrapping="Wrap" Background="Wheat" Foreground="white"/>
+                                    <TextBlock />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

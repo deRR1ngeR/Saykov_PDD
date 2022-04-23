@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class Question
+    public partial class Question
     {
         public int QuestionId { get; set; }
-        public string? Question_text{ get; set; }
-        public string? Right_answer { get; set; }
-        public string? Answer_1 { get; set; }
-        public string? Answer_2 { get; set; }
-        public string? Answer_3 { get; set; }
-        public int Ticket_Id { get; set; }
-        public Ticket? Ticket { get; set; }
+        public string? QuestionText { get; set; }
+        public string? RightAnswer { get; set; }
+        public string? Answer1 { get; set; }
+        public string? Answer2 { get; set; }
+        public string? Answer3 { get; set; }
+        public int TicketId { get; set; }
+        public string? QuestionImg { get; set; }
+
+        public virtual Ticket Ticket { get; set; } = null!;
     }
 }
-

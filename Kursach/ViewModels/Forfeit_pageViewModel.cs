@@ -5,22 +5,23 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using Kursach.Models.Base;
 
+
 namespace Kursach.ViewModels
-{
-   
-    internal class Traffic_RulesViewModel: ViewModel
-    {
-        
+
+{ 
+    internal class Forfeit_pageViewModel
+  {
         readonly SAYKOV_PDDContext db;
-        public ObservableCollection<PddInfo> Info { get; set; }
-        public Traffic_RulesViewModel()
+        public ObservableCollection<FineThem> Fine { get; set; }
+
+        public Forfeit_pageViewModel()
         {
 
             db = new SAYKOV_PDDContext();
-            db.PddInfos.Load();
-            Info = db.PddInfos.Local.ToObservableCollection();
-          
+            db.FineThems.Load();
+            Fine = db.FineThems.Local.ToObservableCollection();
+
+
         }
-        
     }
 }

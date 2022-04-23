@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class Login
+    public partial class Login
     {
-        [Key]
-        public int Login_id { get; set; }
-        public string? Login_name { get; set; }
-        public string? Password { get; set; }
+        public Login()
+        {
+            Admins = new HashSet<Admin>();
+            Users = new HashSet<User>();
+        }
+
+        public int LoginId { get; set; }
+        public string? LoginName { get; set; }
+        public string? Passwords { get; set; }
+
+        public virtual ICollection<Admin> Admins { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

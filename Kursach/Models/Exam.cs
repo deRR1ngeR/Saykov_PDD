@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class Exam
+    public partial class Exam
     {
-        [Key]
-        public int Exam_id { get; set; }
-        public string? Exam_result { get; set; }
-        public List<User>? User { get; set; }
+        public Exam()
+        {
+            TicketExams = new HashSet<TicketExam>();
+        }
+
+        public int ExamId { get; set; }
+        public string? ExamResult { get; set; }
+
+        public virtual ExamResult? ExamResultNavigation { get; set; }
+        public virtual ICollection<TicketExam> TicketExams { get; set; }
     }
 }

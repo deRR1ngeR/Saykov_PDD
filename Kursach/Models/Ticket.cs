@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class Ticket
+    public partial class Ticket
     {
-        public int TicketId  { get; set; }
-        public string? Ticket_result  { get; set; }
-        public List<User>? User { get; set; }
+        public Ticket()
+        {
+            Questions = new HashSet<Question>();
+            TicketExams = new HashSet<TicketExam>();
+        }
+
+        public int TicketId { get; set; }
+        public string TicketResult { get; set; } = null!;
+
+        public virtual TicketResult TicketResultNavigation { get; set; } = null!;
+        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<TicketExam> TicketExams { get; set; }
     }
 }

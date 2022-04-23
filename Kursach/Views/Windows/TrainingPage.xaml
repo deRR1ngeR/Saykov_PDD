@@ -52,8 +52,22 @@
                 <RowDefinition Height="15*"/>
 
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="1" Height="300" Margin="0 15" Grid.RowSpan="2" VerticalAlignment="Top" >
-                <ListBox x:Name="TrainingMenu"  Height="244" Background="#0277BD"/>
+            <StackPanel Grid.Column="0" Background="#55ACBE" Margin="10">
+                <Button Background="#55ACBE"  Margin="0 45 0 0" BorderThickness=" 0 0 0 1">
+                    <Hyperlink NavigateUri="StartPage.xaml" TextDecorations="None" Foreground="white" FontFamily="Arial Bold" FontSize="13">МЕНЮ</Hyperlink>
+                </Button>
+                <Button  BorderThickness="0 0 0 1" Background="#55ACBE" Margin="0 25 0 0" >
+                    <Hyperlink  NavigateUri="Forfeit_page.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold " FontSize="13" >РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+                </Button>
+                <Button   BorderThickness="0 0 0 1" Background="#55ACBE"  Height="50"  Margin="0 25 0 0" >
+                    <Hyperlink  NavigateUri="Traffic_rules.xaml" TextDecorations="None" Foreground="White"  FontFamily="Arial Bold" FontSize="13" >ИЗМЕНЕНИЯ В ПДД</Hyperlink>
+
+                </Button>
+
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Height="265" Margin="25,15,25,0" VerticalAlignment="Top" Grid.ColumnSpan="2" >
+                <ListBox x:Name="TrainingMenu"  Height="265" Background="#0277BD"/>
             </StackPanel>
             <StackPanel Grid.ColumnSpan="3" Grid.Row="1" Background="#EF2530">
                 <TextBlock Text="ООО КУРСОВАЯ BY САЙКО"  TextAlignment="Center" VerticalAlignment="CENTER" Margin="0 10" Foreground="#FFE135" FontSize="15"/>

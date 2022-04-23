@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursach.Models
 {
-    internal class User
+    public partial class User
     {
         public int UserId { get; set; }
-        public  int Login_id { get; set; }
+        public int LoginId { get; set; }
         public string? Surname { get; set; }
         public string? Name { get; set; }
         public string? Patronim { get; set; }
-        public Login? Login { get; set; }
-        public List<Ticket>? Ticket_Results { get; set; }
-        public List<Exam>? Exam_Resilts { get; set;}
+        public string? Results { get; set; }
+        public string? Exam { get; set; }
+
+        public virtual ExamResult? ExamNavigation { get; set; }
+        public virtual Login Login { get; set; } = null!;
+        public virtual TicketResult? ResultsNavigation { get; set; }
     }
 }
