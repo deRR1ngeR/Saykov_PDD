@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:Kursach.ViewModels"
       mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
-      ShowsNavigationUI="False">
+      ShowsNavigationUI="False" Background="White">
     <Page.DataContext>
         <vm:MainWindowViewModel/>
     </Page.DataContext>
@@ -55,13 +55,13 @@
             <StackPanel Orientation="Vertical" Margin="0,25,0,4" Grid.Row="1" Grid.Column="1">
 
                 <TextBlock Text="Логин" FontSize="16"/>
-                <TextBox Margin="0 5" BorderThickness="0 0 0 1"/>
+                <TextBox Margin="0 5" BorderThickness="0 0 0 1" Text="{Binding Login, Mode=OneWayToSource}"/>
                 <TextBlock Text="Пароль" FontSize="16"/>
                 <PasswordBox Margin="0 5" BorderThickness="0 0 0 1"/>
                 <TextBlock>
                 <Hyperlink NavigateUri="StartPage.xaml" TextDecorations="None" >Войти</Hyperlink>
                 </TextBlock>
-                <Button Content="Войти" FontSize="16" Width="80" Margin="0 5" />
+                <Button Content="Войти" FontSize="16" Width="80" Margin="0 5" Command="{Binding AuthButtonClickCommand}" />
                 <Button  Content="Регистрация" FontSize="12" Width="70" Background="White" Margin="0 -5" BorderThickness="0" Height="18"/>
                
 
