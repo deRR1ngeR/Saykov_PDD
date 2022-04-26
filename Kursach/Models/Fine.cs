@@ -7,7 +7,7 @@ namespace Kursach.Models
     {
         public int FineId { get; set; }
         public int FineThemId { get; set; }
-        public string? FineText { get; set; }
+        public string? Fine_Text { get; set; }
         public string? FineCost { get; set; }
 
         public virtual FineThem FineThem { get; set; } = null!;

@@ -112,14 +112,14 @@ namespace Kursach.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Fine_Cost");
 
-                    b.Property<string>("FineText")
+                    b.Property<int>("FineThemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Fine_Text")
                         .HasMaxLength(350)
                         .HasColumnType("nchar(350)")
                         .HasColumnName("Fine_Text")
                         .IsFixedLength();
-
-                    b.Property<int>("FineThemId")
-                        .HasColumnType("int");
 
                     b.HasKey("FineId");
 

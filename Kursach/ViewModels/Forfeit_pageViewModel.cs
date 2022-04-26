@@ -26,7 +26,7 @@ namespace Kursach.ViewModels
             db.FineThems.Load();
             db.Fines.Load();
             Them = db.FineThems.Local.ToObservableCollection();
-            Info= db.Fines.Local.ToObservableCollection();
+            Info = db.Fines.Local.ToObservableCollection();
          //  using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
          //  {
          //      var fines = db.FineThems.Join(db.Fines,

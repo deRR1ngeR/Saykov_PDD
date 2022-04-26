@@ -23,6 +23,6 @@ namespace Kursach
         public Forfeit_page()
         {
             InitializeComponent();
-        }
+            }
     }
 }

@@ -56,24 +56,32 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="300*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="1"  Margin="10">
-                <TextBlock Text="Административная ответственность за нарушение Правил дорожного движения." FontSize="15" HorizontalAlignment="Left" Margin="10 7 0 0" FontFamily="Arial" />
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2"  Margin="10">
+                <TextBlock Text="Административная ответственность за нарушение Правил дорожного движения." FontSize="20" Margin="15 0 0 0" HorizontalAlignment="Left"  FontFamily="Arial" />
             </StackPanel>
-            <StackPanel  Grid.Row="1" Grid.Column="1" Background="#55ACBE" Margin="10" CanVerticallyScroll="True">
-                <ListBox ItemsSource="{Binding Them}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="5">
-                                <TextBlock FontSize="18" Text="{Binding Path=FineText }" TextWrapping="Wrap" Foreground="White" />
-                                <ListBox ItemsSource="{Binding Info}">
-                                    <TextBlock Text="{Binding FineText}"/>
-
-                                </ListBox>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+            <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible">
+            <StackPanel   Background="#55ACBE" Margin="10" >
+                <ListBox ItemsSource = "{Binding Them}"  >
+                    <ListBox.ItemTemplate >
+                        <DataTemplate >
+                            <StackPanel Margin="5" >
+                                <TextBlock Padding="15 5 0 5" FontSize="18" Text="{Binding Path=FineText }" TextWrapping="Wrap" Foreground="#333333" Background="#88BCEC"/>
+                                <ListBox ItemsSource="{Binding Fines}" BorderThickness="0 0 0 1" >
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate >
+                                                <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text = "{Binding Fine_Text}" Foreground="White" TextWrapping="Wrap" Width="450"/>
+                                                    <TextBlock Text="{Binding FineCost}" HorizontalAlignment="Center" Margin="70 0 0 0" VerticalAlignment="Center" FontSize="25"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox >
+                            </StackPanel >
+                        </DataTemplate >
+                    </ListBox.ItemTemplate >
+                </ListBox >
             </StackPanel >
+            </ScrollViewer>
             <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
                 <Button    Background="Red"  Height="50" Width="166" Margin="0 15 0 0">
                     <Hyperlink NavigateUri="TrainingPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="14">ТРЕНИРОВКА ПДД</Hyperlink>

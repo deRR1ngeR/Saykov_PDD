@@ -119,7 +119,7 @@ namespace Kursach.Models.Base
 
                 entity.Property(e => e.FineCost).HasColumnName("Fine_Cost");
 
-                entity.Property(e => e.FineText)
+                entity.Property(e => e.Fine_Text)
                     .HasMaxLength(350)
                     .HasColumnName("Fine_Text")
                     .IsFixedLength();

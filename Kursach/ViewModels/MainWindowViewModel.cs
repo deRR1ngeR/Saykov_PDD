@@ -17,8 +17,19 @@ namespace Kursach.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
 
-        public string login;
-        public string password;
+        private string _Login;
+        private string _Password;
+        public string Login
+        {
+            get => _Login;
+            set => Set(ref _Login, value);
+        }
+        public string Password
+        {
+            get => _Password;
+            set => Set(ref _Password, value);
+
+        }
         public MainWindowViewModel()
         {
             #region Комманды
@@ -41,8 +52,11 @@ namespace Kursach.ViewModels
             Login AuthUser = null;
             using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
             {
-                AuthUser = db.Logins.Where(b => b.LoginName == login && b.Passwords== password).FirstOrDefault();
+                
+                AuthUser = db.Logins.Where(b => b.LoginName == Login&& b.Passwords == Password).FirstOrDefault();
+               
             }
+            
             if (AuthUser != null)
                 MessageBox.Show("All is good!");
             else
