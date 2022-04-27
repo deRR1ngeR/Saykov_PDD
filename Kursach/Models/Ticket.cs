@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kursach.Models
+namespace Kursach
 {
     public partial class Ticket
     {
@@ -12,9 +12,8 @@ namespace Kursach.Models
         }
 
         public int TicketId { get; set; }
-        public string TicketResult { get; set; } = null!;
+        public string? TicketResult { get; set; }
 
-        public virtual TicketResult TicketResultNavigation { get; set; } = null!;
         public virtual ICollection<Question> Questions { get; set; }
         public virtual ICollection<TicketExam> TicketExams { get; set; }
     }

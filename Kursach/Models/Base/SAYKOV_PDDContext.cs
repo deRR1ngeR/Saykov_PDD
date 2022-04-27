@@ -34,7 +34,7 @@ namespace Kursach.Models.Base
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server = LAPTOP-VFH74HFU\\SQLEXPRESS; Database = SAYKOV_PDD; Trusted_Connection = True;");
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-VFH74HFU\\SQLEXPRESS;Initial Catalog=SAYKOV_PDD;Trusted_Connection = True");
             }
         }
 
@@ -115,13 +115,22 @@ namespace Kursach.Models.Base
             {
                 entity.ToTable("Fine");
 
-                entity.Property(e => e.FineId).ValueGeneratedNever();
+                entity.Property(e => e.FineCost)
+                    .HasMaxLength(15)
+                    .HasColumnName("Fine_Cost");
 
-                entity.Property(e => e.FineCost).HasColumnName("Fine_Cost");
+                entity.Property(e => e.FineImg)
+                    .HasMaxLength(250)
+                    .HasColumnName("Fine_img");
 
-                entity.Property(e => e.Fine_Text)
+                entity.Property(e => e.FineText)
                     .HasMaxLength(350)
                     .HasColumnName("Fine_Text")
+                    .IsFixedLength();
+
+                entity.Property(e => e.FineTime)
+                    .HasMaxLength(20)
+                    .HasColumnName("Fine_Time")
                     .IsFixedLength();
 
                 entity.HasOne(d => d.FineThem)
@@ -188,61 +197,59 @@ namespace Kursach.Models.Base
                     .HasColumnName("Question_id");
 
                 entity.Property(e => e.Answer1)
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("Answer_1");
 
                 entity.Property(e => e.Answer2)
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("Answer_2");
 
                 entity.Property(e => e.Answer3)
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("Answer_3");
 
+                entity.Property(e => e.Answer4)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("Answer_4");
+
                 entity.Property(e => e.QuestionImg)
-                    .HasMaxLength(100)
+                    .HasMaxLength(150)
                     .HasColumnName("Question_img");
 
                 entity.Property(e => e.QuestionText)
-                    .HasMaxLength(400)
+                    .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("Question_text");
 
                 entity.Property(e => e.RightAnswer)
-                    .HasMaxLength(100)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("Right_answer");
 
-                entity.Property(e => e.TicketId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ticket_id");
+                entity.Property(e => e.TicketId).HasColumnName("ticket_id");
 
                 entity.HasOne(d => d.Ticket)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.TicketId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Question_Ticket");
+                    .HasConstraintName("FK_Question_Ticket1");
             });
 
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.ToTable("Ticket");
 
-                entity.Property(e => e.TicketId).HasColumnName("Ticket_id");
+                entity.Property(e => e.TicketId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Ticket_id");
 
                 entity.Property(e => e.TicketResult)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
+                    .HasMaxLength(150)
                     .HasColumnName("Ticket_result");
-
-                entity.HasOne(d => d.TicketResultNavigation)
-                    .WithMany(p => p.Tickets)
-                    .HasForeignKey(d => d.TicketResult)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Ticket_Ticket_results");
             });
 
             modelBuilder.Entity<TicketExam>(entity =>
@@ -266,14 +273,15 @@ namespace Kursach.Models.Base
 
             modelBuilder.Entity<TicketResult>(entity =>
             {
-                entity.HasKey(e => e.TicketResult1);
-
                 entity.ToTable("Ticket_results");
 
+                entity.Property(e => e.TicketResultId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("Ticket_resultID");
+
                 entity.Property(e => e.TicketResult1)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("Ticket_result");
+                    .HasMaxLength(150)
+                    .HasColumnName("Ticket_Result");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -296,10 +304,6 @@ namespace Kursach.Models.Base
 
                 entity.Property(e => e.Patronim)
                     .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Results)
-                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Surname)

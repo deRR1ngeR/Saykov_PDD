@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kursach.Models
+namespace Kursach
 {
     public partial class User
     {
@@ -10,7 +10,7 @@ namespace Kursach.Models
         public string? Surname { get; set; }
         public string? Name { get; set; }
         public string? Patronim { get; set; }
-        public string? Results { get; set; }
+        public int? Results { get; set; }
         public string? Exam { get; set; }
 
         public virtual ExamResult? ExamNavigation { get; set; }

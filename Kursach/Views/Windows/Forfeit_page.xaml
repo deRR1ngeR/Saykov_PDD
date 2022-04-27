@@ -5,11 +5,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:Kursach.ViewModels"
-      
+
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Forfeit_page"
       
+      Title="Forfeit_page"
       Background="White">
     <Page.DataContext>
     <vm:Forfeit_pageViewModel/>
@@ -70,9 +69,15 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate >
                                                 <StackPanel Orientation="Horizontal" >
-                                            <TextBlock Text = "{Binding Fine_Text}" Foreground="White" TextWrapping="Wrap" Width="450"/>
-                                                    <TextBlock Text="{Binding FineCost}" HorizontalAlignment="Center" Margin="70 0 0 0" VerticalAlignment="Center" FontSize="25"/>
-                                                </StackPanel>
+                                            <TextBlock Text = "{Binding FineText}" Foreground="White" TextWrapping="Wrap" Width="450"/>
+                                                    <TextBlock Text="{Binding FineCost}" HorizontalAlignment="Center" Margin="25 0 0 0" VerticalAlignment="Center" FontSize="25"/>
+                                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <Image Source="{Binding FineImg}">
+                                                          
+                                                        </Image>
+                                                        <TextBlock Text="{Binding FineTime}" Foreground="black" FontStyle="Italic" Margin="35 0 0 0"/>
+                                                    </StackPanel>
+                                                 </StackPanel>
                                             </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox >
@@ -82,20 +87,39 @@
                 </ListBox >
             </StackPanel >
             </ScrollViewer>
-            <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
+            <StackPanel Grid.Row="1" Orientation="Vertical"  Background="#55ACBE" Height="460" Width="220" >
+            <StackPanel  Margin="10">
                 <Button    Background="Red"  Height="50" Width="166" Margin="0 15 0 0">
                     <Hyperlink NavigateUri="TrainingPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="14">ТРЕНИРОВКА ПДД</Hyperlink>
-                   
                 </Button>
                 <Button   BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="160" Margin="0 25 0 0">
                     <Hyperlink  NavigateUri="Traffic_rules.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="13">ИЗМЕНЕНИЯ В ПДД</Hyperlink>
-
                 </Button>
                 <Button  BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="160" Margin="0 25 0 0">
                     <Hyperlink  NavigateUri="TicketPage.xaml" Foreground="White" TextDecorations="None" FontFamily="Arial Bold" FontSize="15">ВЫХОД В МЕНЮ</Hyperlink>
-
                 </Button>
-
+            </StackPanel>
+            <StackPanel Margin="0 10 0 0" >
+                <TextBlock Text="Условные обозначения" FontSize="15" HorizontalAlignment="Center" FontFamily="Arial Bold"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
+                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine2.png" />
+                        <TextBlock Text=" - лишение права управления ТС" Margin="5 5 0 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
+                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine.png" />
+                        <TextBlock Text=" - возможно лишение права   управления ТС" Margin="5 5 0 0" Width="180" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
+                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine3.png"   />
+                        <TextBlock Text=" - возможен административный арест" Margin="5 5 0 0" Width="180" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 10 0 0 ">
+                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine4.png" />
+                        <TextBlock Text=" - возможны общественные работы" Margin="5 5 0 0" Width="180" TextWrapping="Wrap"/>
+                    </StackPanel>
+                
+                </StackPanel>
+                
             </StackPanel>
         </Grid>
     </Grid>

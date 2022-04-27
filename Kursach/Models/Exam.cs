@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kursach.Models
+namespace Kursach
 {
     public partial class Exam
     {

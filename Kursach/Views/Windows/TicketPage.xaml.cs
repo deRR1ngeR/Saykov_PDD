@@ -24,5 +24,10 @@ namespace Kursach
         {
             InitializeComponent();
         }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
