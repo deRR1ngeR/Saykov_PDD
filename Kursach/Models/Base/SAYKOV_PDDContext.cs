@@ -17,6 +17,7 @@ namespace Kursach.Models.Base
         }
 
         public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Answer> Answers { get; set; } = null!;
         public virtual DbSet<Exam> Exams { get; set; } = null!;
         public virtual DbSet<ExamResult> ExamResults { get; set; } = null!;
         public virtual DbSet<Fine> Fines { get; set; } = null!;
@@ -80,6 +81,27 @@ namespace Kursach.Models.Base
                     .HasForeignKey(d => d.LoginId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Admin__Login_id__38996AB5");
+            });
+
+            modelBuilder.Entity<Answer>(entity =>
+            {
+                entity.HasKey(e => e.AnswersId);
+
+                entity.Property(e => e.AnswersId).HasColumnName("Answers_Id");
+
+                entity.Property(e => e.Answer1)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("Answer");
+
+                entity.Property(e => e.QuestionId).HasColumnName("Question_id");
+
+                entity.Property(e => e.RightAnswer).HasColumnName("Right_answer");
+
+                entity.HasOne(d => d.Question)
+                    .WithMany(p => p.Answers)
+                    .HasForeignKey(d => d.QuestionId)
+                    .HasConstraintName("FK_Answers_Question");
             });
 
             modelBuilder.Entity<Exam>(entity =>
@@ -196,26 +218,6 @@ namespace Kursach.Models.Base
                     .ValueGeneratedNever()
                     .HasColumnName("Question_id");
 
-                entity.Property(e => e.Answer1)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("Answer_1");
-
-                entity.Property(e => e.Answer2)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("Answer_2");
-
-                entity.Property(e => e.Answer3)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("Answer_3");
-
-                entity.Property(e => e.Answer4)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("Answer_4");
-
                 entity.Property(e => e.QuestionImg)
                     .HasMaxLength(150)
                     .HasColumnName("Question_img");
@@ -224,11 +226,6 @@ namespace Kursach.Models.Base
                     .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("Question_text");
-
-                entity.Property(e => e.RightAnswer)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("Right_answer");
 
                 entity.Property(e => e.TicketId).HasColumnName("ticket_id");
 

@@ -7,11 +7,13 @@
       mc:Ignorable="d" 
       xmlns:vm="clr-namespace:Kursach.ViewModels"
       d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:cv="clr-namespace:Kursach.Services"
       Title="TicketPage"
       Background="White">
     <Page.DataContext>
         <vm:TicketPageViewModel/>
     </Page.DataContext>
+   
     <Page.Resources>
         <Style TargetType="Button" x:Key="QstnBtn">
             <Setter Property="Width" Value="50"/>
@@ -32,6 +34,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <cv:Converter x:Key="Converter" />
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -64,15 +67,12 @@
             <TextBlock >
                 <Image Source="{Binding QuestionImg}"/>
             </TextBlock>
-            <ListBox Grid.Column="1" ItemsSource="{Binding questions}" >
+            <ListBox Grid.Column="1" ItemsSource="{Binding Answers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedAnswer}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding StringFormat=1. {0}, Path=RightAnswer}" TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
-                        <TextBlock Text="{Binding StringFormat=2. {0}, Path=Answer1}" TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
-                        <TextBlock Text="{Binding StringFormat=3. {0}, Path=Answer2}" TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
-                        <TextBlock Text="{Binding StringFormat=4. {0}, Path=Answer3}" TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
-                        <TextBlock Text="{Binding StringFormat=5. {0}, Path=Answer4}" TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
+                        <TextBlock Text="{Binding Answer1}"  TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
+                       
                           </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -10,12 +10,28 @@
 
   <ItemGroup>
     <None Remove="imgs\car.png" />
+    <None Remove="imgs\fine.png" />
+    <None Remove="imgs\Fine2.png" />
+    <None Remove="imgs\Fine3.png" />
+    <None Remove="imgs\Fine4.png" />
     <None Remove="imgs\og.png" />
     <None Remove="imgs\up.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="imgs\car.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imgs\fine.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imgs\Fine2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imgs\Fine3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="imgs\Fine4.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="imgs\og.png">
@@ -26,7 +42,6 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
