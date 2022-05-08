@@ -1,5 +1,5 @@
-﻿//using Kursach.Models.Base;
-//using Kursach.Models;
+﻿using Kursach.Models.Base;
+using Kursach.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,14 +12,14 @@ namespace Kursach.ViewModels
 {
     internal class TrainingPageViewModel
     {
-      //
-      // readonly SAYKOV_PDDContext db;
-      // public ObservableCollection<Ticket> Tkts { get; set; }
-      // public TrainingPageViewModel()
-      // {
-      //     db = new SAYKOV_PDDContext();
-      //     db.Tickets.Load();
-      //     Tkts = db.Tickets.Local.ToObservableCollection();
-      // }
+     
+     readonly SAYKOV_PDDContext db;
+     public ObservableCollection<Ticket> Tkts { get; set; }
+     public TrainingPageViewModel()
+     {
+         db = new SAYKOV_PDDContext();
+         db.Tickets.Load();
+         Tkts = db.Tickets.Local.ToObservableCollection();
+     }
     }
 }

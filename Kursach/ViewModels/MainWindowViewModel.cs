@@ -53,7 +53,7 @@ namespace Kursach.ViewModels
             using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
             {
 
-                AuthUser = db.Logins.Where(b => b.LoginName == Login && b.Passwords == Password).FirstOrDefault();
+             //   AuthUser = db.Logins.Where(b => b.LoginName == Login && b.Passwords == Password).FirstOrDefault();
 
             }
 

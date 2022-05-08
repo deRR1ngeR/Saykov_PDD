@@ -7,15 +7,17 @@ namespace Kursach
     {
         public Login()
         {
-            Admins = new HashSet<Admin>();
-            Users = new HashSet<User>();
+            TicketResults = new HashSet<TicketResult>();
         }
 
-        public int LoginId { get; set; }
-        public string? LoginName { get; set; }
-        public string? Passwords { get; set; }
+        public int UserId { get; set; }
+        public string Name { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public string? Adress { get; set; }
+        public string? Phone { get; set; }
+        public bool IsAdmin { get; set; }
+        public string? Results { get; set; }
 
-        public virtual ICollection<Admin> Admins { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<TicketResult> TicketResults { get; set; }
     }
 }

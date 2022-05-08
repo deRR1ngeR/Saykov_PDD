@@ -16,7 +16,6 @@ namespace Kursach.Models.Base
         {
         }
 
-        public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Answer> Answers { get; set; } = null!;
         public virtual DbSet<Exam> Exams { get; set; } = null!;
         public virtual DbSet<ExamResult> ExamResults { get; set; } = null!;
@@ -28,7 +27,6 @@ namespace Kursach.Models.Base
         public virtual DbSet<Ticket> Tickets { get; set; } = null!;
         public virtual DbSet<TicketExam> TicketExams { get; set; } = null!;
         public virtual DbSet<TicketResult> TicketResults { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,48 +39,6 @@ namespace Kursach.Models.Base
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Admin>(entity =>
-            {
-                entity.ToTable("Admin");
-
-                entity.Property(e => e.AdminId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("Admin_id");
-
-                entity.Property(e => e.Birthday).HasColumnType("date");
-
-                entity.Property(e => e.DateOfEntry)
-                    .HasColumnType("date")
-                    .HasColumnName("Date_of_entry");
-
-                entity.Property(e => e.LoginId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("Login_id");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Patronim)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhoneNumber)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("Phone_Number");
-
-                entity.Property(e => e.Surname)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Admins)
-                    .HasForeignKey(d => d.LoginId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Admin__Login_id__38996AB5");
-            });
-
             modelBuilder.Entity<Answer>(entity =>
             {
                 entity.HasKey(e => e.AnswersId);
@@ -179,18 +135,28 @@ namespace Kursach.Models.Base
 
             modelBuilder.Entity<Login>(entity =>
             {
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK__Login__D78B57AFB525EC6C");
+
                 entity.ToTable("Login");
 
-                entity.Property(e => e.LoginId).HasColumnName("Login_id");
+                entity.Property(e => e.UserId).HasColumnName("User_id");
 
-                entity.Property(e => e.LoginName)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Login_name");
+                entity.Property(e => e.Adress).HasMaxLength(50);
 
-                entity.Property(e => e.Passwords)
+                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+
+                entity.Property(e => e.Name)
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Phone).HasMaxLength(12);
+
+                entity.Property(e => e.Results).HasMaxLength(150);
             });
 
             modelBuilder.Entity<PddInfo>(entity =>
@@ -226,6 +192,7 @@ namespace Kursach.Models.Base
                     .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("Question_text");
+                entity.Property(e => e.NumberInTicket).IsRequired().HasColumnName("Number_in_ticket");
 
                 entity.Property(e => e.TicketId).HasColumnName("ticket_id");
 
@@ -244,9 +211,16 @@ namespace Kursach.Models.Base
                     .ValueGeneratedNever()
                     .HasColumnName("Ticket_id");
 
+                entity.Property(e => e.ResultId).HasColumnName("Result_id");
+
                 entity.Property(e => e.TicketResult)
                     .HasMaxLength(150)
                     .HasColumnName("Ticket_result");
+
+                entity.HasOne(d => d.Result)
+                    .WithMany(p => p.Tickets)
+                    .HasForeignKey(d => d.ResultId)
+                    .HasConstraintName("FK_Ticket_Ticket_results");
             });
 
             modelBuilder.Entity<TicketExam>(entity =>
@@ -279,49 +253,14 @@ namespace Kursach.Models.Base
                 entity.Property(e => e.TicketResult1)
                     .HasMaxLength(150)
                     .HasColumnName("Ticket_Result");
-            });
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("User_id");
+                entity.Property(e => e.UserId).HasColumnName("User_id");
 
-                entity.Property(e => e.Exam)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LoginId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("Login_id");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Patronim)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Surname)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.ExamNavigation)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.Exam)
-                    .HasConstraintName("FK_Users_Exam_results");
-
-                entity.HasOne(d => d.Login)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.LoginId)
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TicketResults)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__Login_id__52593CB8");
-
-                entity.HasOne(d => d.ResultsNavigation)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.Results)
-                    .HasConstraintName("FK_Users_Ticket_results");
+                    .HasConstraintName("FK_Ticket_results_Login");
             });
 
             OnModelCreatingPartial(modelBuilder);

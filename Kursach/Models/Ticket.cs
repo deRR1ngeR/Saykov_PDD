@@ -13,7 +13,9 @@ namespace Kursach
 
         public int TicketId { get; set; }
         public string? TicketResult { get; set; }
+        public int? ResultId { get; set; }
 
+        public virtual TicketResult? Result { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
         public virtual ICollection<TicketExam> TicketExams { get; set; }
     }

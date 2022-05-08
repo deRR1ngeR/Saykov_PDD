@@ -14,8 +14,10 @@ namespace Kursach
         public string? QuestionText { get; set; }
         public int TicketId { get; set; }
         public string? QuestionImg { get; set; }
+        public int NumberInTicket { get; set; }
 
         public virtual Ticket Ticket { get; set; } = null!;
         public virtual ICollection<Answer> Answers { get; set; }
+
     }
 }

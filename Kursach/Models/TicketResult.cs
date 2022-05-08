@@ -7,12 +7,14 @@ namespace Kursach
     {
         public TicketResult()
         {
-            Users = new HashSet<User>();
+            Tickets = new HashSet<Ticket>();
         }
 
         public int TicketResultId { get; set; }
         public string? TicketResult1 { get; set; }
+        public int UserId { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual Login User { get; set; } = null!;
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

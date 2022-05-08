@@ -9,7 +9,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       xmlns:cv="clr-namespace:Kursach.Services"
       Title="TicketPage"
-      Background="White">
+      Background="White"
+      x:Name="TicketPages">
     <Page.DataContext>
         <vm:TicketPageViewModel/>
     </Page.DataContext>
@@ -19,22 +20,16 @@
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="35"/>
             <Setter Property="Margin" Value="10 0 0 0"/>
-            <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="ArialBold"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+
         </Style>
-        <Style TargetType="StackPanel" x:Key="TrueAnswer">
-            <Style.Triggers>
-                <DataTrigger 
-                             Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <cv:Converter x:Key="Converter" />
+        
+      
+       
+        
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -43,45 +38,51 @@
             <RowDefinition Height="196*"/>
             <RowDefinition Height="113*"/>
         </Grid.RowDefinitions>
-        <!--Короче, кнопке ответа можно передевать через биндинг имя. Если в кнопке находится правильный
-        ответ, её имя - а-ля трубатан, иначе фалсбатан. А по имени вызывать нужный тригер. -->
-         <Label Content="Билет N" VerticalAlignment="Center" FontSize="15" Foreground="Red" FontFamily="Arial Bold" Height="26" />
-       <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="600" >
-            <Button Content="1" Style="{StaticResource QstnBtn}" x:Name="id1" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id1}"/>
-            <Button Content="2" Style="{StaticResource QstnBtn}" x:Name="id2" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id2}"/>
-            <Button Content="3" Style="{StaticResource QstnBtn}" x:Name="id3" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id3}"/>
-            <Button Content="4" Style="{StaticResource QstnBtn}" x:Name="id4" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id4}"/>
-            <Button Content="5" Style="{StaticResource QstnBtn}" x:Name="id5" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id5}"/>
-            <Button Content="6" Style="{StaticResource QstnBtn}" x:Name="id6" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id6}"/>
-            <Button Content="7" Style="{StaticResource QstnBtn}" x:Name="id7" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id7}"/>
-            <Button Content="8" Style="{StaticResource QstnBtn}" x:Name="id8" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id8}"/>
-            <Button Content="9" Style="{StaticResource QstnBtn}" x:Name="id9" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id9}"/>
-          <Button Content="10" Style="{StaticResource QstnBtn}" x:Name="id10" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id10}"/>
+        <StackPanel Grid.Row="3">
+        
         </StackPanel>
-        <TextBlock Grid.Row="1"  Text="{Binding QuestionText }" Margin="35 15 45 15" FontSize="22" FontFamily="Times New Roman" TextWrapping="Wrap" />
+        <Label Content="Билет N" VerticalAlignment="Center" FontSize="15" Foreground="Red" FontFamily="Arial Bold" Height="26" />
+       <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="600" >
+            <Button Content="1" Style="{StaticResource QstnBtn}"  Background="{Binding Startcolor}" x:Name="id1" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id1}" />
+            <Button Content="2" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id2" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id2}" />
+            <Button Content="3" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id3" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id3}" />
+            <Button Content="4" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id4" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id4}" />
+            <Button Content="5" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id5" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id5}" />
+            <Button Content="6" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id6" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id6}" />
+            <Button Content="7" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id7" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id7}" />
+            <Button Content="8" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id8" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id8}" />
+            <Button Content="9" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id9" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id9}" />
+            <Button Content="10" Style="{StaticResource QstnBtn}" Background="{Binding Startcolor}" x:Name="id10" Command="{Binding ClickButtonIdCommand}" CommandParameter="{Binding ElementName=id10}" />
+        </StackPanel>
+        <TextBlock Grid.Row="1" VerticalAlignment="Top" Text="{Binding tbTime}" HorizontalAlignment="Center" FontFamily="GOST type A" FontSize="20"/>
+        <TextBlock Grid.Row="1"  Text="{Binding qstnText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="55 25 45 15" FontSize="22" FontFamily="Arial Bold" TextWrapping="Wrap" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="449*"/>
                 <ColumnDefinition Width="351*"/>
             </Grid.ColumnDefinitions>
             <TextBlock >
-                <Image Source="{Binding QuestionImg}"/>
+                <Image Source="{Binding Qstn.QuestionImg}"/>
             </TextBlock>
-            <ListBox Grid.Column="1" ItemsSource="{Binding Answers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedAnswer}">
+            <ListBox Grid.Column="1" ItemsSource="{Binding Answers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedAnswer}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                        <TextBlock Text="{Binding Answer1}"  TextWrapping="Wrap" Width="325" FontFamily="Arial Bold" FontSize="12"/>
-                       
-                          </StackPanel>
+                            <TextBlock x:Name="Answer" Text="{Binding Answer1}" TextWrapping="Wrap"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
             </ListBox>
         </Grid>
-        <StackPanel Grid.Row="3" Background="#8ACC93" Visibility="Hidden" x:Name="TrueAnswer" >
-            <TextBlock HorizontalAlignment="Center" Margin="0 20 0 0" Text="Ваш ответ: " FontSize="22" FontFamily="Arial Bold"/>
-            <TextBlock Text="ПРАВИЛЬНО" Foreground="White" FontSize="35" Margin="0 10 0 0" HorizontalAlignment="Center" FontFamily="Arial Bold"/>
+        <StackPanel Grid.Row="3" Background="{Binding Resultcolor}" Visibility="{Binding Visible}" x:Name="TrueAnswer">
+            <TextBlock HorizontalAlignment="Center" Margin="0 20 0 0" Text="{Binding UrAnswer}" FontSize="22" FontFamily="Arial Bold"/>
+            <TextBlock Text="{Binding Result}" Foreground="White" FontSize="35" Margin="0 10 0 0" HorizontalAlignment="Center" FontFamily="Arial Bold"/>
+        </StackPanel> 
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button   x:Name="bt1" Command="{Binding StartTicketCommand}" CommandParameter="{Binding ElementName=TicketPages}"
+                     Grid.Row="2" Width="150" Height="50"
+                    Background="LightSalmon" Content="Начать" FontFamily="Arial Bold" FontSize="20" />
         </StackPanel>
     </Grid>
     
