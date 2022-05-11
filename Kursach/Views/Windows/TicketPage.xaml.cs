@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Kursach
@@ -18,21 +17,11 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для TicketPage.xaml
     /// </summary>
-    public partial class TicketPage : Page
+    public partial class TicketPage : Window
     {
         public TicketPage()
         {
             InitializeComponent();
-        }
-
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

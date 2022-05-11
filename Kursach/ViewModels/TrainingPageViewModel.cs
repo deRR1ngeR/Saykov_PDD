@@ -7,19 +7,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Windows.Input;
+using Kursach.Infrastructure.Commands;
+using Kursach.ViewModels.Base;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Navigation;
+using System.Windows;
 
 namespace Kursach.ViewModels
 {
-    internal class TrainingPageViewModel
+    internal class TrainingPageViewModel: ViewModel, INotifyPropertyChanged
     {
-     
+
+        private Window ticketPage = new TicketPage();
      readonly SAYKOV_PDDContext db;
      public ObservableCollection<Ticket> Tkts { get; set; }
-     public TrainingPageViewModel()
+        private Ticket _SelectedTicket;
+        public Ticket SelectedTicket
+        {   get
+            {
+                return _SelectedTicket;
+            }
+            set
+            {
+                _SelectedTicket = value;
+                OnPropertyChanged("SelectedTicket");
+                OpenTicket();
+            }
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        }
+
+        public TrainingPageViewModel()
      {
          db = new SAYKOV_PDDContext();
          db.Tickets.Load();
          Tkts = db.Tickets.Local.ToObservableCollection();
      }
+     
+        public void OpenTicket()
+        {
+            ticketPage.DataContext = new TicketPageViewModel(SelectedTicket);
+            ticketPage.Show();
+            
+            
+        }
     }
 }

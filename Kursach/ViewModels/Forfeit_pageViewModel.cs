@@ -7,11 +7,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using Kursach.Models.Base;
+using System.Windows.Input;
 
 namespace Kursach.ViewModels
 
 {
-    internal class Forfeit_pageViewModel
+    internal class Forfeit_pageViewModel: ViewModel
     {
         readonly SAYKOV_PDDContext db;
         public ObservableCollection<FineThem> Them { get; set; }
@@ -28,6 +29,16 @@ namespace Kursach.ViewModels
             Them = db.FineThems.Local.ToObservableCollection();
             Info = db.Fines.Local.ToObservableCollection();
             
+            
         }
+        public ICommand OpenPageCommand { get; set; }
+
+        public void OnOpenPageCommandExecuted(object p)
+        {
+            TrainingPage trpage = new TrainingPage();
+            trpage.Show();
+
+        }
+        public bool CanOpenPageCommandExecute(object p) => true;
     }
 }

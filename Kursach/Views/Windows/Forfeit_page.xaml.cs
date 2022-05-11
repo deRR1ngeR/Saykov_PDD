@@ -18,7 +18,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для Forfeit_page.xaml
     /// </summary>
-    public partial class Forfeit_page : Page
+    public partial class Forfeit_page : Window
     {
         public Forfeit_page()
         {

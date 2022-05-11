@@ -18,6 +18,19 @@ namespace Kursach.ViewModels
 {
     internal class TicketPageViewModel : ViewModel, INotifyPropertyChanged
     {
+        int _tiketId;
+        public int ticketId
+        {
+            get
+            {
+                return _tiketId;
+            }
+            set
+            {
+                _tiketId = value;
+                OnPropertyChanged("ticketId");
+            }
+        }
         private Visibility _Visible;
         public Visibility Visible
         {
@@ -29,6 +42,32 @@ namespace Kursach.ViewModels
             {
                 _Visible = value;
                 OnPropertyChanged("Visible");
+            }
+        }
+        private string _ImageSource;
+        public string ImageSource
+        {
+            get
+            {
+                return _ImageSource;
+            }
+            set
+            {
+                _ImageSource = value;
+                OnPropertyChanged("ImageSource");
+            }
+        }
+        private string _RightAnswer;
+        public string RightAnswer
+        {
+            get
+            {
+                return _RightAnswer;
+            }
+            set
+            {
+                _RightAnswer = value;
+                OnPropertyChanged("RightAnswer");
             }
         }
         public ArrayList answered = new ArrayList();
@@ -74,12 +113,7 @@ namespace Kursach.ViewModels
         }
         private ObservableCollection<Question> _Questions;
         private SolidColorBrush _Resultcolor;
-        private ImageSource sourceIn;
-        public ImageSource SourceIn
-        {
-            get => sourceIn;
-            set => Set(ref sourceIn, value);
-        }
+        
         public SolidColorBrush Resultcolor
         {
             get
@@ -157,7 +191,7 @@ namespace Kursach.ViewModels
 
         private void AnswerClickCommands()
         {
-
+            OptionPage.ResultBtn3.Visibility = Visibility.Hidden;
             int i = 1;
             Visible = Visibility.Visible;
             foreach (var t in Answers)
@@ -165,7 +199,10 @@ namespace Kursach.ViewModels
                 if (selectedAnswer != t)
                 {
                     i++;
+
                 }
+                else
+                    break;
 
             }
 
@@ -219,7 +256,6 @@ namespace Kursach.ViewModels
                         OptionPage.id10.Background = Brushes.LightGreen;
                     }
                     #endregion условия
-                    MessageBox.Show("Верно!");
                     Resultcolor = Brushes.LightGreen;
                     Result = "Правильно";
                     UrAnswer = "Ваш ответ: " + i;
@@ -271,12 +307,14 @@ namespace Kursach.ViewModels
 #endregion  условия
                     Result = "Неправильно";
                     Resultcolor = Brushes.Red;
-                    Startcolor = Brushes.Red;
+                    int n = 1;
                     foreach (var t in Answers)
-                    {
+                    { n++;
                         if (t.RightAnswer == true)
                         {
-                            MessageBox.Show("Правильный ответ  - " + t.Answer1);
+                            OptionPage.ResultBtn3.Visibility = Visibility.Visible;
+                            UrAnswer = "Ваш ответ: " + i;
+                            RightAnswer = "Правильный ответ: " + n;
                             break;
                         }
 
@@ -318,8 +356,10 @@ namespace Kursach.ViewModels
            if (QstnId<10 && QstnId>0)
             using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
             {
-                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId).FirstOrDefault();
+                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId && b.TicketId == ticketId).FirstOrDefault();
                     qstnText = Qstn.NumberInTicket + ". " + Qstn.QuestionText;
+                    ImageSource = Qstn.QuestionImg;
+                    
             }
             if (Qstn == null)
                 NextQuestion();
@@ -328,7 +368,7 @@ namespace Kursach.ViewModels
               
             
             var ansrs = from t in an
-                        where t.QuestionId == QstnId
+                        where t.QuestionId == Qstn.QuestionId
                         select t;
 
             foreach (var t in ansrs)
@@ -357,17 +397,21 @@ namespace Kursach.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-
-        public TicketPageViewModel()
+        public TicketPageViewModel(Ticket currTicket)
         {
+            ticketId = currTicket.TicketId;
             db = new SAYKOV_PDDContext();
-            db.Questions.Load();
             db.Answers.Load();
+            db.Questions.Load();
             NextQuestionCommand = new RelayCommand(OnNextQuestionCommandExecuted, CanNextQuestionCommandExecute);
             StartTicketCommand = new RelayCommand(OnStartTicketCommandExecuted, CanStartTicketCommandExecute);
             ClickButtonIdCommand = new RelayCommand(OnClickButtonIdCommandExecuted, CanClickButtonIdCommandExecute);
             an = db.Answers.Local.ToObservableCollection();
-            Startcolor = Brushes.LightGray; 
+            Startcolor = Brushes.LightGray;
+        }
+        public TicketPageViewModel()
+        {
+            
         }
         public void Timer()
         {
@@ -395,12 +439,13 @@ namespace Kursach.ViewModels
         {
             NextQuestion();
             Visible = Visibility.Hidden;
+            OptionPage.ResultBtn3.Visibility = Visibility.Hidden;
         }
         public bool CanNextQuestionCommandExecute(object p) => true;
         public ICommand ClickButtonIdCommand { get; set; }
         public void OnClickButtonIdCommandExecuted(object p)
         {
-
+            Visible = Visibility.Hidden;
             var s = p as Button;
             string id = s.Name;
             btnid = id;
@@ -412,14 +457,14 @@ namespace Kursach.ViewModels
             Answers = new ObservableCollection<Answer>();
             using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
             {
-                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId).FirstOrDefault();
+                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId && b.TicketId == ticketId).FirstOrDefault();
 
                 qstnText =Qstn.NumberInTicket + ". " + Qstn.QuestionText;
-
+                ImageSource = Qstn.QuestionImg;
             }
 
             var ansrs = from t in an
-                        where t.QuestionId == QstnId
+                        where t.QuestionId == Qstn.QuestionId
                         select t;
 
             foreach (var t in ansrs)
@@ -442,15 +487,15 @@ namespace Kursach.ViewModels
             Answers = new ObservableCollection<Answer>();
             using (SAYKOV_PDDContext db = new SAYKOV_PDDContext())
             {
-                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId).FirstOrDefault();
+                Qstn = db.Questions.Where(b => b.NumberInTicket == QstnId && b.TicketId == ticketId).FirstOrDefault();
 
                 qstnText = Qstn.NumberInTicket + ". " + Qstn.QuestionText;
-
+                ImageSource = Qstn.QuestionImg;
 
             }
 
             var ansrs = from t in an
-                        where t.QuestionId == QstnId
+                        where t.QuestionId == Qstn.QuestionId
                         select t;
 
             foreach (var t in ansrs)

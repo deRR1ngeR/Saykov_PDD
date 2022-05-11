@@ -17,7 +17,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для StartWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow:Window
     {
     
         public MainWindow()

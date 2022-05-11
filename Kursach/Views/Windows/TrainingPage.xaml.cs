@@ -18,7 +18,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для TrainingPage.xaml
     /// </summary>
-    public partial class TrainingPage : Page
+    public partial class TrainingPage : Window
     {
         public TrainingPage()
         {

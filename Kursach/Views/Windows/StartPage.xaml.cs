@@ -18,7 +18,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для StartPagex.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class StartPage : Window
     {
         public StartPage()
         {
