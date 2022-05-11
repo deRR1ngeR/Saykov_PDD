@@ -1,4 +1,4 @@
-﻿<Window x:Class="Kursach.Traffic_rules"
+﻿<Page x:Class="Kursach.Traffic_rules"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,9 +11,9 @@
       Title="Traffic_rules"
       Background="White"
       >
-    <Window.DataContext>
+    <Page.DataContext>
         <vm:Traffic_RulesViewModel/>
-    </Window.DataContext>
+    </Page.DataContext>
 
     <Grid>
         
@@ -87,4 +87,4 @@
             </StackPanel>
         </Grid>
     </Grid>
-</Window>
+</Page>

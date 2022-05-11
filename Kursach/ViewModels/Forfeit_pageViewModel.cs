@@ -35,8 +35,7 @@ namespace Kursach.ViewModels
 
         public void OnOpenPageCommandExecuted(object p)
         {
-            TrainingPage trpage = new TrainingPage();
-            trpage.Show();
+           
 
         }
         public bool CanOpenPageCommandExecute(object p) => true;

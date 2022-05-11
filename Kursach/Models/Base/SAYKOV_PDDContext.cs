@@ -262,7 +262,6 @@ namespace Kursach.Models.Base
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Ticket_results_Login");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
 

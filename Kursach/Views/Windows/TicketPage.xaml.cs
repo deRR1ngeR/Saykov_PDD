@@ -17,7 +17,7 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для TicketPage.xaml
     /// </summary>
-    public partial class TicketPage : Window
+    public partial class TicketPage : Page
     {
         public TicketPage()
         {

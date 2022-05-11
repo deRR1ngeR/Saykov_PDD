@@ -18,11 +18,11 @@ namespace Kursach
     /// <summary>
     /// Логика взаимодействия для Forfeit_page.xaml
     /// </summary>
-    public partial class Forfeit_page : Window
+    public partial class Forfeit_page : Page
     {
         public Forfeit_page()
         {
             InitializeComponent();
-            }
+        }
     }
 }

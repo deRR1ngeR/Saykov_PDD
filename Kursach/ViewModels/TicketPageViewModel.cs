@@ -434,6 +434,14 @@ namespace Kursach.ViewModels
         }
 
         #region Команды
+        public ICommand ClosePageCommand { get; set; }
+        public bool CanClosePageCommandExecute(object p) => true;
+        public void OnClosePageCommandExecute(object p)
+        { 
+            
+            
+
+        }
         public ICommand NextQuestionCommand { get; set; }
         public void OnNextQuestionCommandExecuted(object p)
         {

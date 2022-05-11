@@ -14,13 +14,14 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Navigation;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Kursach.ViewModels
 {
     internal class TrainingPageViewModel: ViewModel, INotifyPropertyChanged
     {
-
-        private Window ticketPage = new TicketPage();
+        private Ticket sTicket;
+        public Page ticketPage = new TicketPage();
      readonly SAYKOV_PDDContext db;
      public ObservableCollection<Ticket> Tkts { get; set; }
         private Ticket _SelectedTicket;
@@ -51,10 +52,16 @@ namespace Kursach.ViewModels
      
         public void OpenTicket()
         {
+            if (SelectedTicket != null)
+                sTicket = SelectedTicket;
+            if (SelectedTicket == null)
+                ticketPage.DataContext = new TicketPageViewModel(sTicket);
+            else
             ticketPage.DataContext = new TicketPageViewModel(SelectedTicket);
-            ticketPage.Show();
-            
-            
+            NavigationWindow win = new NavigationWindow();
+            win.Content = ticketPage;
+            win.Show();
+
         }
     }
 }
