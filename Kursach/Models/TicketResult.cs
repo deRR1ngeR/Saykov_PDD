@@ -13,7 +13,7 @@ namespace Kursach
         public int TicketResultId { get; set; }
         public string? TicketResult1 { get; set; }
         public int UserId { get; set; }
-
+        public DateTime resDate { get; set; }
         public virtual Login User { get; set; } = null!;
         public virtual ICollection<Ticket> Tickets { get; set; }
     }

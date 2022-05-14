@@ -16,6 +16,8 @@
     <None Remove="imgs\Fine4.png" />
     <None Remove="imgs\og.png" />
     <None Remove="imgs\up.png" />
+    <None Remove="imgs\user.jpg" />
+    <None Remove="imgs\user.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,12 +44,14 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Ado" Version="1.1.1" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>

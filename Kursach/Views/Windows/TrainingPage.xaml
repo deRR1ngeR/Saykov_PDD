@@ -30,7 +30,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Frame Grid.ColumnSpan="4" Grid.RowSpan="3">    
+            <Frame Grid.ColumnSpan="4" Grid.RowSpan="3" >    
                 
             </Frame>
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">

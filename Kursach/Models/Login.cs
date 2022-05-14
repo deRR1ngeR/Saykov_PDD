@@ -17,7 +17,9 @@ namespace Kursach
         public string? Phone { get; set; }
         public bool IsAdmin { get; set; }
         public string? Results { get; set; }
-
+        public string? UserName { get; set; }
+        public string? UserSurname { get; set; }
+        public DateTime RegDate{ get; set; }
         public virtual ICollection<TicketResult> TicketResults { get; set; }
     }
 }

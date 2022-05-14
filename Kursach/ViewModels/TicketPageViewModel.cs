@@ -13,11 +13,13 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace Kursach.ViewModels
 {
     internal class TicketPageViewModel : ViewModel, INotifyPropertyChanged
     {
+        int WrongAnswersCount = 0;
         int _tiketId;
         public int ticketId
         {
@@ -191,6 +193,7 @@ namespace Kursach.ViewModels
 
         private void AnswerClickCommands()
         {
+
             OptionPage.ResultBtn3.Visibility = Visibility.Hidden;
             int i = 1;
             Visible = Visibility.Visible;
@@ -304,10 +307,11 @@ namespace Kursach.ViewModels
                     {
                         OptionPage.id10.Background = Brushes.Red;
                     }
+                    
 #endregion  условия
                     Result = "Неправильно";
                     Resultcolor = Brushes.Red;
-                    int n = 1;
+                    int n = 0;
                     foreach (var t in Answers)
                     { n++;
                         if (t.RightAnswer == true)
@@ -319,9 +323,26 @@ namespace Kursach.ViewModels
                         }
 
                     }
+                    WrongAnswersCount++;
+                    CheckTicket();
                     answered.Add(Qstn.NumberInTicket);
+                    
                 }
+
             }
+        }
+       public void CheckTicket()
+        {
+            if (WrongAnswersCount == 2)
+            {
+
+                MessageBox.Show("Вы допустили 2 ошибки в тесте!");
+                
+                System.Threading.Thread.Sleep(5);
+                DefaultVisual();
+
+            }
+
         }
         public void NextQuestion()
         {
@@ -396,9 +417,10 @@ namespace Kursach.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
-
-        public TicketPageViewModel(Ticket currTicket)
+        private TrainingPageViewModel trPageView;
+        public TicketPageViewModel(Ticket currTicket, TrainingPageViewModel tPageView)
         {
+            this.trPageView = tPageView;
             ticketId = currTicket.TicketId;
             db = new SAYKOV_PDDContext();
             db.Answers.Load();
@@ -406,6 +428,7 @@ namespace Kursach.ViewModels
             NextQuestionCommand = new RelayCommand(OnNextQuestionCommandExecuted, CanNextQuestionCommandExecute);
             StartTicketCommand = new RelayCommand(OnStartTicketCommandExecuted, CanStartTicketCommandExecute);
             ClickButtonIdCommand = new RelayCommand(OnClickButtonIdCommandExecuted, CanClickButtonIdCommandExecute);
+            ClosePageCommand = new RelayCommand(OnClosePageCommandExecuted, CanClosePageCommandExecute);
             an = db.Answers.Local.ToObservableCollection();
             Startcolor = Brushes.LightGray;
         }
@@ -424,6 +447,7 @@ namespace Kursach.ViewModels
 
                 if (_time == TimeSpan.Zero) { _timer.Stop();
                     MessageBox.Show("Время вышло!");
+                    DefaultVisual();
                 }
 
                 _time = _time.Add(TimeSpan.FromSeconds(-1));
@@ -432,14 +456,29 @@ namespace Kursach.ViewModels
             _timer.Start();
             
         }
-
+        public void DefaultVisual()
+        {
+            trPageView.CloseTicket();
+            #region
+            OptionPage.bt1.Visibility = Visibility.Visible;
+            OptionPage.id1.Background = Brushes.LightGray;
+            OptionPage.id2.Background = Brushes.LightGray;
+            OptionPage.id3.Background = Brushes.LightGray;
+            OptionPage.id4.Background = Brushes.LightGray;
+            OptionPage.id5.Background = Brushes.LightGray;
+            OptionPage.id6.Background = Brushes.LightGray;
+            OptionPage.id7.Background = Brushes.LightGray;
+            OptionPage.id8.Background = Brushes.LightGray;
+            OptionPage.id9.Background = Brushes.LightGray;
+            OptionPage.id10.Background = Brushes.LightGray;
+            #endregion
+        }
         #region Команды
         public ICommand ClosePageCommand { get; set; }
         public bool CanClosePageCommandExecute(object p) => true;
-        public void OnClosePageCommandExecute(object p)
-        { 
-            
-            
+        public void OnClosePageCommandExecuted(object p)
+        {
+            DefaultVisual();
 
         }
         public ICommand NextQuestionCommand { get; set; }
@@ -488,7 +527,7 @@ namespace Kursach.ViewModels
         public void OnStartTicketCommandExecuted(object p)
         {
             OptionPage = (TicketPage)p;
-            string id = OptionPage.bt1.Name;
+            string id = OptionPage.id1.Name;
             btnid = id;
             id = id.Substring(2);
             QstnId = Convert.ToInt32(id);
@@ -510,7 +549,7 @@ namespace Kursach.ViewModels
             {
                 Answers.Add(t);
             }
-            if (btnid == "bt1")
+            if (btnid == "id1")
             {
                 OptionPage.bt1.Visibility = Visibility.Hidden;
                 Timer();

@@ -49,19 +49,23 @@ namespace Kursach.ViewModels
          db.Tickets.Load();
          Tkts = db.Tickets.Local.ToObservableCollection();
      }
-     
+        public NavigationWindow win;
+
         public void OpenTicket()
         {
+            win = new NavigationWindow();
             if (SelectedTicket != null)
                 sTicket = SelectedTicket;
             if (SelectedTicket == null)
-                ticketPage.DataContext = new TicketPageViewModel(sTicket);
+                ticketPage.DataContext = new TicketPageViewModel(sTicket, this);
             else
-            ticketPage.DataContext = new TicketPageViewModel(SelectedTicket);
-            NavigationWindow win = new NavigationWindow();
+            ticketPage.DataContext = new TicketPageViewModel(SelectedTicket, this);
             win.Content = ticketPage;
             win.Show();
-
+        }
+        public void CloseTicket()
+        {
+            win.Close();
         }
     }
 }

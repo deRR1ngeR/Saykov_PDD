@@ -1,4 +1,5 @@
 ﻿using Kursach.Infrastructure.Commands;
+using Kursach.Models;
 using Kursach.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Kursach.ViewModels
 {
     internal class StartPageViewModel : ViewModel
     {
+        private Login User = CurrentUser.getInstance();
      
         public StartPageViewModel()
         {
