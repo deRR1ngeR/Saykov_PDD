@@ -109,18 +109,8 @@
                         Margin="0,5"
                         BorderBrush="{Binding bb}"
                         BorderThickness="0,0,0,1"
+                        Text="{Binding Login}"
                         >
-                        <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <jas:InputValidationRule
-                                    ErrorMessage="Введите сумму"/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewTextInput" >
-                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="NumberValidationTextBox" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
                         <materialdesign:HintAssist.Hint>
                             <TextBlock Text="Логин" />
                         </materialdesign:HintAssist.Hint>
@@ -128,7 +118,19 @@
                     <TextBox
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
-                        Text="{Binding UserName}">
+                        
+                        >
+                        <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <jas:InputValidationRule
+                                    ErrorMessage="Введите ваше Имя"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput" >
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="NameValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <materialdesign:HintAssist.Hint>
                             <TextBlock Text="Имя" />
                         </materialdesign:HintAssist.Hint>
@@ -136,7 +138,19 @@
                     <TextBox
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
-                        Text="{Binding UserSurname}">
+                        >
+                        <Binding Path="UserSurname" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <jas:InputValidationRule
+                                    ErrorMessage="Введите вашу Фамилию"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput" >
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="NameValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
                         <materialdesign:HintAssist.Hint>
                             <TextBlock Text="Фамилия" />
                         </materialdesign:HintAssist.Hint>
@@ -144,7 +158,18 @@
                     <TextBox
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
-                        Text="{Binding Num}">
+                        >
+                        <Binding Path="Num" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <jas:InputValidationRule
+                                    ErrorMessage="Введите номер телефона"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput" >
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="NumberValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <materialdesign:HintAssist.Hint>
                             <TextBlock Text="Номер телефона" />
                         </materialdesign:HintAssist.Hint>

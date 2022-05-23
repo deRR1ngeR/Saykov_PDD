@@ -68,7 +68,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5">
-                                    <TextBlock FontSize="18" Text="{Binding Path=PddText}" TextWrapping="Wrap" Background="Wheat" Foreground="white"/>
+                                    <TextBlock FontSize="18" Text="{Binding Path=PddText}" TextWrapping="Wrap"  Foreground="white"/>
                                     <TextBlock />
                                 </StackPanel>
                             </DataTemplate>
@@ -77,12 +77,25 @@
                 </StackPanel >
             </ScrollViewer>
             <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
-                <Button  Background="Red"  Height="50" Width="170" Margin="0 15 0 0" Foreground="White"  FontFamily="Arial Bold" FontSize="14" Content="ТРЕНИРОВКА ПДД"/>
+                <Button  Background="Red"  Height="50" Width="170" Margin="0 10 0 0" >
+                    <Hyperlink TextDecorations="None" NavigateUri="TrainingPage.xaml" Foreground="White"  FontFamily="Arial Bold" FontSize="14" >
+                        ТРЕНИРОВКА ПДД
+                    </Hyperlink>
+                </Button>
 
-                <Button  BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="170" Margin="0 25 0 0" Foreground="White"  FontFamily="Arial Bold" FontSize="13" Content="РАЗМЕРЫ ШТРАФОВ"/>
-                <Button   BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="170" Margin="0 25 0 0" Foreground="White"  FontFamily="Arial Bold" FontSize="15" Content="ВЫХОД В МЕНЮ"/>
+                <Button  BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="170" Margin="0 15 0 0"  >
+                    <Hyperlink Foreground="White" NavigateUri="Forfeit_page.xaml" TextDecorations="None" FontFamily="Arial Bold" FontSize="13">
+                        РАЗМЕРЫ ШТРАФОВ
+                    </Hyperlink>
+                </Button>
+                <Button   BorderThickness="0 0 0 0" Background="#55ACBE"  Height="50" Width="170" Margin="0 15 0 0" >
+                    
+                    <Hyperlink NavigateUri="StartPage.xaml" Foreground="White"  FontFamily="Arial Bold" FontSize="15" TextDecorations="None">ВЫХОД В МЕНЮ</Hyperlink>
+                </Button>
 
-
+                <Button   BorderThickness="0 0 0 1" Width="170" Background="#55ACBE"  Height="50"  Margin="0 15 0 0" Visibility="{Binding AdmPageVisibilty}" >
+                    <Hyperlink Foreground="White" FontFamily="Arial Bold " FontSize="12" NavigateUri="AdminStartPage.xaml" TextDecorations="None">АДМИН ПАНЕЛЬ</Hyperlink>
+                </Button>
 
             </StackPanel>
         </Grid>

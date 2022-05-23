@@ -14,10 +14,20 @@ namespace Kursach.ViewModels
 {
     internal class StartPageViewModel : ViewModel
     {
-     
+        private Visibility _AdmPageVisibilty;
+        public Visibility AdmPageVisibilty
+        {
+            get => _AdmPageVisibilty;
+            set => Set(ref _AdmPageVisibilty, value);
+        }
         public StartPageViewModel()
         {
-           
+            if (CurrentUser.getInstance().IsAdmin == true)
+            {
+                AdmPageVisibilty = Visibility.Visible;
+            }
+            else AdmPageVisibilty = Visibility.Hidden;
+
         }
     }
 }

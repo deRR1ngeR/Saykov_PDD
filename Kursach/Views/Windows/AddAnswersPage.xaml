@@ -1,0 +1,403 @@
+﻿<Page
+    x:Class="Kursach.Views.Windows.AddAnswers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Kursach.Views.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Kursach.ViewModels"
+    Title="AddAnswersPage"
+    d:DesignHeight="600"
+    d:DesignWidth="1200"
+    Background="White"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:AddAnswersPageViewModel />
+    </Page.DataContext>
+
+    <Grid ShowGridLines="true">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Frame Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70*" />
+                <RowDefinition Height="47*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontFamily="arial"
+                    FontSize="25"
+                    Text="САЙКОВ" />
+                <Image
+                    Width="70"
+                    Height="70"
+                    Source="../../imgs/og.png" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontFamily="Arial"
+                    FontSize="25"
+                    Text="ПДД" />
+
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="185"
+                Height="35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom">
+                <Button
+                    Width="170"
+                    Height="35"
+                    Margin="15,0,0,0"
+                    HorizontalAlignment="Right"
+                    Background="#55ACBE"
+                    BorderThickness="0"
+                    Content="Админ панель"
+                    FontFamily="Arial Bold"
+                    FontSize="18"
+                    Foreground="White" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*" />
+                <ColumnDefinition Width="181*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.ColumnSpan="2"
+                Width="366"
+                Margin="34,0,0,0"
+                HorizontalAlignment="Left">
+                <Image
+                    Width="354"
+                    Height="131"
+                    Source="../../imgs/up.png" />
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Background="#55ACBE"
+            ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="103*" />
+                <ColumnDefinition Width="297*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Column="0"
+                Margin="6,10,6,10"
+                Background="#55ACBE">
+                <Button
+                    Height="67"
+                    Margin="0,45,0,0"
+                    Background="#55ACBE"
+                    BorderThickness="0,0,0,1"
+                    Content="МЕНЮ"
+                    FontFamily="Arial Bold"
+                    FontSize="13"
+                    Foreground="white" />
+                <Button
+                    Height="67"
+                    Margin="0,25,0,0"
+                    Background="#55ACBE"
+                    BorderThickness="0,0,0,1"
+                    Content="ИЗМЕНЕНИЯ В ПДД"
+                    FontFamily="Arial Bold "
+                    FontSize="13"
+                    Foreground="White" />
+                <Button
+                    Height="104"
+                    Margin="0,25,0,0"
+                    Background="#55ACBE"
+                    BorderThickness="0,0,0,1"
+                    Content="РАЗМЕРЫ ШТРАФОВ"
+                    FontFamily="Arial Bold "
+                    FontSize="12"
+                    Foreground="White" />
+            </StackPanel>
+            <Grid Grid.Column="1" Margin="0,-10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44*" />
+                    <RowDefinition Height="87*" />
+                    <RowDefinition Height="108*" />
+                    <RowDefinition Height="78*" />
+                    <RowDefinition Height="78*" />
+                    <RowDefinition Height="127*" />
+
+
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="131,15,131,0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontFamily="Arial Bold"
+                        FontSize="18"
+                        Foreground="White"
+                        Text="Добавить билет" />
+                </StackPanel>
+                <StackPanel
+                    Grid.RowSpan="2"
+                    Height="51"
+                    Margin="0,44,0,0"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="25,0,0,5"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Ответ 1" />
+                        <TextBox
+                            Width="350"
+                            Height="30"
+                            Margin="25,0,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding TicketId}" />
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0">
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Правильный ответ" />
+                        <ComboBox Height="30">
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Да" />
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Нет" />
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Height="80"
+                    Margin="0,87,0,0"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel>
+
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Ответ 2" />
+                        <TextBox
+                            Width="350"
+                            Height="30"
+                            Margin="25,5,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding QstnText}" />
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0">
+                        <ComboBox
+                            Width="171.966666666667"
+                            Height="30"
+                            Margin="0,20,0,0">
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Да" />
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Нет" />
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Height="50"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Ответ 3" />
+                        <TextBox
+                            Width="350"
+                            Height="30"
+                            Margin="25,5,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding ImgSource}" />
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0">
+                        <ComboBox
+                            Width="171.966666666667"
+                            Height="30"
+                            Margin="0,20,0,0">
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Да" />
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Нет" />
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="4"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Ответ 4" />
+                        <TextBox
+                            Width="350"
+                            Height="30"
+                            Margin="25,5,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding NumberInTicket}" />
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0">
+                        <ComboBox
+                            Width="171.966666666667"
+                            Height="30"
+                            Margin="0,20,0,0">
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Да" />
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Нет" />
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="5"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Ответ 5" />
+                        <TextBox
+                            Width="350"
+                            Height="30"
+                            Margin="25,5,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding NumberInTicket}" />
+                    </StackPanel>
+                    <StackPanel Margin="25,0,0,0">
+                        <ComboBox
+                            Width="171.966666666667"
+                            Height="30"
+                            Margin="0,20,0,0">
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Да" />
+                            </ComboBoxItem>
+
+                            <ComboBoxItem>
+                                <TextBlock
+                                    FontFamily="Arial Bold"
+                                    FontSize="14"
+                                    Foreground="Black"
+                                    Text="Нет" />
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="5"
+                    Width="150"
+                    Margin="0,0,25,15"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+                    <Button Content="Добавить ответы" />
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

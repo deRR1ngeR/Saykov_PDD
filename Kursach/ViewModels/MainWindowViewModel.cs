@@ -20,6 +20,7 @@ namespace Kursach.ViewModels
 {
     internal class MainWindowViewModel : ViewModel, INotifyPropertyChanged
     {
+        private int ValidationErrors = 0;
         private SolidColorBrush _bb;
         public SolidColorBrush bb
         {
@@ -172,7 +173,18 @@ namespace Kursach.ViewModels
         #endregion
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"^[A-Za-zA-я<>%$?!&_/^*@#()+=:;'\\s]");
+            Regex regex = new Regex(@"((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$");
+            regex.Replace(" ", "");
+            e.Handled = regex.IsMatch(e.Text);
+        } 
+        public void PasswordValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}");
+            regex.Replace(" ", "");
+           
+        } public void NameValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$");
             regex.Replace(" ", "");
             e.Handled = regex.IsMatch(e.Text);
         }

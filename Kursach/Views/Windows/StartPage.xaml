@@ -128,15 +128,18 @@
                 </Button>
             </StackPanel>
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="1" >
+                
                 <StackPanel
                     Width="429"
                     Margin="0,50,0,0"
                     HorizontalAlignment="Right">
-                    <Button Background="#55ACBE" Width="265" Height="40" HorizontalContentAlignment="Left" >
+                    
+                    <Button Background="#55ACBE" Width="265" Height="40" HorizontalContentAlignment="Left" BorderThickness="0">
                         <Hyperlink Foreground="White"  TextDecorations="None" FontSize="23" FontFamily="Arial Bold" NavigateUri="ProfilePage.xaml">
                             МОЙ ПРОФИЛЬ
                         </Hyperlink>
+                        
                     </Button>
                     <Button
                         Margin="0 20 0 0"
@@ -166,21 +169,26 @@
                             РАЗМЕРЫ ШТРАФОВ
                         </Hyperlink>
                     </Button>
-                    <Button
+                    <StackPanel Orientation="Horizontal">
+                    
+                        <Button   BorderThickness="0 0 0 1" Width="160" Background="#55ACBE" Margin="80 15 0 0"  Height="40"   Visibility="{Binding AdmPageVisibilty}" >
+                            <Hyperlink Foreground="White" FontFamily="Arial Bold " FontSize="12" NavigateUri="AdminStartPage.xaml" TextDecorations="None">АДМИН ПАНЕЛЬ</Hyperlink>
+                        </Button>
+                        <Button
                         Width="125"
                         Height="40"
-                        Margin="-140,15,0,0"
+                        Margin="25,15,0,0"
                         Background="#55ACBE"
                         BorderThickness="0,0,0,1"
                         Content="ВЫХОД"
                         FontFamily="Arial Bold"
                         FontSize="23"
                         Foreground="White">
-                        <Button.Command>
-                            <cmd:CloseApplicationCommand />
-                        </Button.Command>
-                    </Button>
-
+                            <Button.Command>
+                                <cmd:CloseApplicationCommand />
+                            </Button.Command>
+                        </Button>
+                    </StackPanel>
 
                 </StackPanel>
             </Grid>

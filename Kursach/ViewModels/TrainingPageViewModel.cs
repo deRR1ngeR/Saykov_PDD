@@ -20,6 +20,12 @@ namespace Kursach.ViewModels
 {
     internal class TrainingPageViewModel: ViewModel, INotifyPropertyChanged
     {
+        private Visibility _AdmPageVisibilty;
+        public Visibility AdmPageVisibilty
+        {
+            get => _AdmPageVisibilty;
+            set =>Set(ref _AdmPageVisibilty, value);
+        }
         private Ticket sTicket;
         public Page ticketPage = new TicketPage();
      readonly SAYKOV_PDDContext db;
@@ -45,6 +51,11 @@ namespace Kursach.ViewModels
 
         public TrainingPageViewModel()
      {
+            if (CurrentUser.getInstance().IsAdmin == true)
+            {
+                AdmPageVisibilty = Visibility.Visible;
+            }
+            else AdmPageVisibilty = Visibility.Hidden;
          db = new SAYKOV_PDDContext();
          db.Tickets.Load();
          Tkts = db.Tickets.Local.ToObservableCollection();
