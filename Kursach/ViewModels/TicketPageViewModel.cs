@@ -14,11 +14,13 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using System.Collections;
 using System.Threading.Tasks;
+using Kursach.Models;
 
 namespace Kursach.ViewModels
 {
     internal class TicketPageViewModel : ViewModel, INotifyPropertyChanged
     {
+        int RightAnswersCount = 0;
         int WrongAnswersCount = 0;
         int _tiketId;
         public int ticketId
@@ -73,6 +75,7 @@ namespace Kursach.ViewModels
             }
         }
         public ArrayList answered = new ArrayList();
+
         private TicketPage _OptionPage;
         public TicketPage OptionPage
         {
@@ -193,7 +196,11 @@ namespace Kursach.ViewModels
 
         private void AnswerClickCommands()
         {
-
+            if(answered.Count == 10)
+            {
+                DataWorker.AddResult(RightAnswersCount, WrongAnswersCount, ticketId);
+                DefaultVisual();
+            }
             OptionPage.ResultBtn3.Visibility = Visibility.Hidden;
             int i = 1;
             Visible = Visibility.Visible;
@@ -263,6 +270,7 @@ namespace Kursach.ViewModels
                     Result = "Правильно";
                     UrAnswer = "Ваш ответ: " + i;
                     answered.Add(Qstn.NumberInTicket);
+                    RightAnswersCount++;
                 }
                 else
                 {
@@ -339,6 +347,7 @@ namespace Kursach.ViewModels
                 MessageBox.Show("Вы допустили 2 ошибки в тесте!");
                 
                 System.Threading.Thread.Sleep(5);
+                DataWorker.AddResult(RightAnswersCount, WrongAnswersCount, ticketId);
                 DefaultVisual();
 
             }
@@ -429,7 +438,7 @@ namespace Kursach.ViewModels
             StartTicketCommand = new RelayCommand(OnStartTicketCommandExecuted, CanStartTicketCommandExecute);
             ClickButtonIdCommand = new RelayCommand(OnClickButtonIdCommandExecuted, CanClickButtonIdCommandExecute);
             ClosePageCommand = new RelayCommand(OnClosePageCommandExecuted, CanClosePageCommandExecute);
-            an = db.Answers.Local.ToObservableCollection();
+            an = new ObservableCollection<Answer> ( db.Answers.ToList());
             Startcolor = Brushes.LightGray;
         }
         public TicketPageViewModel()
@@ -447,6 +456,7 @@ namespace Kursach.ViewModels
 
                 if (_time == TimeSpan.Zero) { _timer.Stop();
                     MessageBox.Show("Время вышло!");
+                    DataWorker.AddResult(RightAnswersCount, WrongAnswersCount, ticketId);
                     DefaultVisual();
                 }
 
@@ -459,8 +469,12 @@ namespace Kursach.ViewModels
         public void DefaultVisual()
         {
             trPageView.CloseTicket();
-            #region
+
+            if (answered.Count != 0)
+            {
             OptionPage.bt1.Visibility = Visibility.Visible;
+
+            #region
             OptionPage.id1.Background = Brushes.LightGray;
             OptionPage.id2.Background = Brushes.LightGray;
             OptionPage.id3.Background = Brushes.LightGray;
@@ -472,6 +486,7 @@ namespace Kursach.ViewModels
             OptionPage.id9.Background = Brushes.LightGray;
             OptionPage.id10.Background = Brushes.LightGray;
             #endregion
+            }
         }
         #region Команды
         public ICommand ClosePageCommand { get; set; }

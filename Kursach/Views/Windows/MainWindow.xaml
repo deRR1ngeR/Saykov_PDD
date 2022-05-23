@@ -9,9 +9,13 @@
     xmlns:vm="clr-namespace:Kursach.ViewModels"
     x:Name="mWindow"
     Title="{Binding Title}"
-    Width="1200"
-    Height="600"
-    mc:Ignorable="d">
+    MinWidth="1200"
+    MinHeight="600"
+  d:DesignHeight="600"
+   d:DesignWidth="1200"
+    mc:Ignorable="d"
+    xmlns:jas="clr-namespace:Kursach.Models" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions">
+    
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
@@ -30,13 +34,13 @@
                 <RowDefinition Height="326*" />
                 <RowDefinition Height="29*" />
             </Grid.RowDefinitions>
-            <Grid
+            <Grid 
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
                 Margin="221,-50,257,170"
-                ShowGridLines="FALSE">
+                >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="380*" />
                     <ColumnDefinition Width="240*" />
@@ -88,7 +92,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
                     <TextBlock
-                        Margin="0,-30,0,0"
+                        Margin="0,-30,0,0" 
                         FontFamily="Tahoma"
                         FontSize="15"
                         Text="Регистрация"
@@ -105,9 +109,36 @@
                         Margin="0,5"
                         BorderBrush="{Binding bb}"
                         BorderThickness="0,0,0,1"
-                        Text="{Binding Login}">
+                        >
+                        <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <jas:InputValidationRule
+                                    ErrorMessage="Введите сумму"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewTextInput" >
+                                <ei:CallMethodAction TargetObject="{Binding}" MethodName="NumberValidationTextBox" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <materialdesign:HintAssist.Hint>
                             <TextBlock Text="Логин" />
+                        </materialdesign:HintAssist.Hint>
+                    </TextBox>
+                    <TextBox
+                        Margin="0,5"
+                        BorderThickness="0,0,0,1"
+                        Text="{Binding UserName}">
+                        <materialdesign:HintAssist.Hint>
+                            <TextBlock Text="Имя" />
+                        </materialdesign:HintAssist.Hint>
+                    </TextBox>
+                    <TextBox
+                        Margin="0,5"
+                        BorderThickness="0,0,0,1"
+                        Text="{Binding UserSurname}">
+                        <materialdesign:HintAssist.Hint>
+                            <TextBlock Text="Фамилия" />
                         </materialdesign:HintAssist.Hint>
                     </TextBox>
                     <TextBox
@@ -123,6 +154,8 @@
                             <TextBlock Text="Пароль" />
                         </materialdesign:HintAssist.Hint>
                     </pbox:PBox>
+
+
                     <Button
                         Width="100"
                         Height="20"

@@ -13,6 +13,8 @@ using Kursach.Infrastructure.Commands.Base;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Controls;
+using Kursach.Views.Windows;
+using System.Text.RegularExpressions;
 
 namespace Kursach.ViewModels
 {
@@ -43,7 +45,6 @@ namespace Kursach.ViewModels
 
         }
            private string _Login;
-        private string _Password;
         private string? _Num;
         public string Num
         {
@@ -55,10 +56,25 @@ namespace Kursach.ViewModels
             get => _Login;
             set => Set(ref _Login, value);
         }
+        private string _Password;
         public string Password
         {
             get => _Password;
             set => Set(ref _Password, value);
+
+        }
+        private string _UserName;
+        public string UserName
+        {
+            get => _UserName;
+            set => Set(ref _UserName, value);
+
+        }
+        private string _UserSurname;
+        public string UserSurname
+        {
+            get => _UserSurname;
+            set => Set(ref _UserSurname, value);
 
         }
         public MainWindowViewModel()
@@ -107,8 +123,19 @@ namespace Kursach.ViewModels
             {
                 if (DataWorker.GetUser(Login, Password))
                 {
+                    if(CurrentUser.getInstance().IsAdmin == false)
+                    {
+
                     StartPage = new StartPage();
                     StartPage.DataContext = new StartPageViewModel();
+                    }
+                    if(CurrentUser.getInstance().IsAdmin == true)
+                    {
+                        StartPage = new AdminStartPage();
+                        StartPage.DataContext = new AdminPageViewModel();
+                    }
+
+                    StartPage.ShowsNavigationUI = false;
                     mWindow.MainGrid.Visibility = Visibility.Hidden;
                 }
                 else
@@ -120,21 +147,20 @@ namespace Kursach.ViewModels
             catch(Exception er)
             {
                 bb = Brushes.Red;
-            }
-            
-           
+            }  
         }
-
+       
         private bool CanAuthButtonClickCommandExecute(object p) => true;
 
         public ICommand? RegUserCommand { get; }
         private void OnRegUserCommandExecuted(object p)
         {
-               if(DataWorker.AddUser(Login,Password,Num))
+               if(DataWorker.AddUser(Login,Password,Num, UserName, UserSurname))
             {
                 MessageBox.Show("Пользователь успешно добавлен.");
                     mWindow.RegistForm.Visibility = Visibility.Hidden;
                 mWindow.AuthForm.Visibility = Visibility.Visible;
+
             }
                else
             {
@@ -144,5 +170,11 @@ namespace Kursach.ViewModels
 
         private bool CanRegUserCommandExecute(object p) => true;
         #endregion
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[A-Za-zA-я<>%$?!&_/^*@#()+=:;'\\s]");
+            regex.Replace(" ", "");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }

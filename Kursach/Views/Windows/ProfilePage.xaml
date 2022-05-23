@@ -5,15 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Kursach.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="ProfilePage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
-    Background="White"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
+    Title="ProfilePage"
+    ShowsNavigationUI="False"
+     d:DesignHeight="600"
+  d:DesignWidth="1200"
+    Background="White"
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:ProfilePageViewModel/>
+        <vm:ProfilePageViewModel />
     </Page.DataContext>
 
     <Grid ShowGridLines="False">
@@ -80,13 +81,7 @@
                     FontSize="18"
                     Foreground="White" />
             </StackPanel>
-            <StackPanel
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="170"
-                Height="35"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom" />
+
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1">
@@ -108,7 +103,6 @@
         <Grid
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Margin="0,0,5,0"
             Background="#55ACBE"
             ShowGridLines="False">
             <Grid.ColumnDefinitions>
@@ -123,31 +117,115 @@
                 Grid.Column="0"
                 Width="190"
                 Height="150"
+                Margin="100,0,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                Orientation="Vertical">
                 <Image
                     Width="150"
                     Height="150"
-                    Margin="40,0,0,0"
+                    Margin="30,0,0,0"
                     Source="../../imgs/user.png" />
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="0 40 0 0">
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,-50,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Vertical">
+                <TextBlock
+                    FontSize="25"
+                    Foreground="White"
+                    Text="Статистика по билетам:" />
+                <StackPanel Orientation="Vertical">
+                    <TextBlock
+                        FontSize="20"
+                        Foreground="White"
+                        Text="{Binding StringFormat=Сдано - {0}, Path=PassedCount}" />
+                    <TextBlock
+                        FontSize="20"
+                        Foreground="White"
+                        Text="{Binding StringFormat=Не сдано - {0}, Path=UnpassedCount}" />
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Margin="403,40,0,3" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Имя:" Foreground="White" FontSize="15" FontFamily="Arial Bold"/>
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="Имя: " />
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="{Binding UserName}" />
+
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                    <TextBlock Text="Фамилия:" Foreground="White" FontSize="15" FontFamily="Arial Bold"/>
+                <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="Фамилия: " />
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="{Binding UserSurname}" />
                 </StackPanel>
-                <StackPanel>
-                    <ListBox ItemsSource="{Binding}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                <StackPanel Margin="0,15,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="Дата регистрации: " />
+                    <TextBlock
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="{Binding regDate}" />
                 </StackPanel>
-                    
+                <StackPanel
+                    Height="268"
+                    Margin="0,25,0,0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        Text="Результаты" />
+                    <DataGrid
+                        Width="550"
+                        Margin="0,15,0,0"
+                        HorizontalAlignment="Center"
+                        AutoGenerateColumns="False"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding tResults}"
+                        VerticalScrollBarVisibility="Visible" Height="226">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="120"
+                                Binding="{Binding TicketId}"
+                                Header="Номер билета" />
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding TicketResult1}"
+                                Header="Результат">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextWrapping" Value="Wrap" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding ResDate}"
+                                Header="Время" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
             </StackPanel>
         </Grid>
     </Grid>

@@ -14,7 +14,6 @@ namespace Kursach.ViewModels
 {
     internal class StartPageViewModel : ViewModel
     {
-        private Login User = CurrentUser.getInstance();
      
         public StartPageViewModel()
         {

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using Kursach.Models.Base;
+using System.Linq;
 
 namespace Kursach.ViewModels
 {
@@ -15,10 +16,9 @@ namespace Kursach.ViewModels
         public ObservableCollection<PddInfo> Info { get; set; }
         public Traffic_RulesViewModel()
         {
-
             db = new SAYKOV_PDDContext();
-            db.PddInfos.Load();
-            Info = db.PddInfos.Local.ToObservableCollection();
+            
+            Info = new ObservableCollection<PddInfo>(db.PddInfos.ToList());
           
         }
         

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Kursach"
       mc:Ignorable="d" 
       xmlns:vm="clr-namespace:Kursach.ViewModels"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600"
+      d:DesignWidth="1200"
       Title="TrainingPage" Background="White" ShowsNavigationUI="false">
     <Page.DataContext>
         <vm:TrainingPageViewModel/>
@@ -60,16 +61,22 @@
 
             </Grid.RowDefinitions>
             
-            <StackPanel Grid.Column="0" Background="#55ACBE" Margin="10">
-                <Button Background="#55ACBE"  Margin="0 45 0 0" BorderThickness=" 0 0 0 1" Foreground="white" FontFamily="Arial Bold" FontSize="13" Content="МЕНЮ"/>
-                <Button  BorderThickness="0 0 0 1" Background="#55ACBE" Margin="0 25 0 0" Foreground="White" FontFamily="Arial Bold " FontSize="13" Content="ИЗМЕНЕНИЯ В ПДД"/>
-                <Button   BorderThickness="0 0 0 1" Background="#55ACBE"  Height="50"  Margin="0 25 0 0" Foreground="White" FontFamily="Arial Bold " FontSize="13" Content="РАЗМЕРЫ ШТРАФОВ" />
+            <StackPanel Grid.Column="0" Background="#55ACBE" Margin="6,10,6,34">
+                <Button Background="#55ACBE"  Margin="0 45 0 0"  >
+                    <Hyperlink TextDecorations="None" NavigateUri="StartPage.xaml" Foreground="white" FontFamily="Arial Bold" FontSize="13">МЕНЮ</Hyperlink>
+                </Button>
+                <Button  BorderThickness="0 0 0 1" Background="#55ACBE" Margin="0 45 0 0">
+                    <Hyperlink Foreground="White" FontFamily="Arial Bold " FontSize="13" NavigateUri="Traffic_rules.xaml" TextDecorations="None" >ИЗМЕНЕНИЯ В ПДД</Hyperlink>
+                </Button>
+                <Button   BorderThickness="0 0 0 1" Background="#55ACBE"  Height="50"  Margin="0 45 0 0"  >
+                    <Hyperlink Foreground="White" FontFamily="Arial Bold " FontSize="12" NavigateUri="Forfeit_page.xaml" TextDecorations="None">РАЗМЕРЫ ШТРАФОВ</Hyperlink>
+                </Button>
 
 
 
             </StackPanel>
-            <StackPanel Grid.Column="1" Height="525" Margin="25,15,25,0" VerticalAlignment="Top" Grid.ColumnSpan="2" >
-                <ListBox Height="265" Background="#0277BD" ItemsSource="{Binding Tkts}" SelectedItem="{Binding SelectedTicket}"  >
+            <StackPanel Grid.Column="1"  Margin="25,15,25,0" VerticalAlignment="Top" Grid.ColumnSpan="2" >
+                <ListBox  Background="#0277BD" ItemsSource="{Binding Tkts}" SelectedItem="{Binding SelectedTicket}" Height="337"  >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock TextAlignment="Center" FontSize="18" Foreground="#333333" Text="{Binding StringFormat=Контроль по билету № {0}, Path=TicketId}"/>

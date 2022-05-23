@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
     Title="Forfeit_page"
+    d:DesignHeight="600"
+    d:DesignWidth="1200"
     Background="White"
     ShowsNavigationUI="False"
     mc:Ignorable="d">
@@ -91,11 +93,12 @@
                     Text="Административная ответственность за нарушение Правил дорожного движения." />
             </StackPanel>
             <ScrollViewer
-                Grid.Row="1"
+                Grid.RowSpan="2"
                 Grid.Column="1"
+                Margin="0,66,0,10"
                 VerticalScrollBarVisibility="Visible">
-                <StackPanel Margin="10" Background="#55ACBE">
-                    <ListBox ItemsSource="{Binding Them}">
+                <StackPanel Height="362" Background="#55ACBE">
+                    <ListBox Height="364" ItemsSource="{Binding Them}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5">
@@ -142,83 +145,94 @@
                     </ListBox>
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel
-                Grid.Row="1"
-                Width="220"
-                Height="460"
-                Background="#55ACBE"
-                Orientation="Vertical">
-                <StackPanel Margin="10">
-                    <Button
-                        Width="166"
-                        Height="50"
-                        Margin="0,15,0,0"
-                        Background="Red"
-                        Command="{Binding OpenPageCommand}"
-                        Content="ТРЕНИРОВКА ПДД"
-                        FontFamily="Arial Bold"
-                        FontSize="14"
-                        Foreground="White" />
-                    <Button
-                        Width="160"
-                        Height="50"
-                        Margin="0,25,0,0"
-                        Background="#55ACBE"
-                        BorderThickness="0,0,0,0"
-                        Content="ИЗМЕНЕНИЯ В ПДД"
-                        FontFamily="Arial Bold"
-                        FontSize="13"
-                        Foreground="White" />
-                    <Button
-                        Width="160"
-                        Height="50"
-                        Margin="0,25,0,0"
-                        Background="#55ACBE"
-                        BorderThickness="0,0,0,0"
-                        Content="ВЫХОД В МЕНЮ"
-                        FontFamily="Arial Bold"
-                        FontSize="15"
-                        Foreground="White" />
+            <ScrollViewer Grid.RowSpan="2" Margin="20,69,10,10">
+                <StackPanel Background="#55ACBE" Orientation="Vertical">
+
+                    <StackPanel Margin="10">
+                        <Button
+                            Width="166"
+                            Height="50"
+                            Margin="0,15,0,0"
+                            Background="Red"
+                            >
+                            <Hyperlink FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White">
+                                ТРЕНИРОВКА ПДД
+
+                            </Hyperlink>
+                        </Button>
+                        <Button
+                            Width="160"
+                            Height="50"
+                            Margin="0,25,0,0"
+                            Background="#55ACBE"
+                            BorderThickness="0,0,0,0">
+                            <Hyperlink
+                                FontFamily="Arial Bold"
+                                FontSize="13"
+                                Foreground="White"
+                                NavigateUri="Traffic_rules.xaml"
+                                TextDecorations="None">
+                                ИЗМЕНЕНИЯ В ПДД
+                            </Hyperlink>
+                        </Button>
+                        <Button
+                            Width="160"
+                            Height="50"
+                            Margin="0,25,0,0"
+                            Background="#55ACBE"
+                            BorderThickness="0,0,0,0"
+                            >
+                            <Hyperlink FontFamily="Arial Bold"
+                            FontSize="15"
+                            Foreground="White" TextDecorations="None">
+                                ВЫХОД В МЕНЮ
+                            </Hyperlink>
+                        </Button>
+
+                    </StackPanel>
+
+                    <StackPanel Height="112" Margin="0,10,0,0">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontFamily="Arial Bold"
+                            FontSize="15"
+                            Text="Условные обозначения" />
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine2.png" />
+                            <TextBlock Margin="5,5,0,0" Text=" - лишение права управления ТС" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine.png" />
+                            <TextBlock
+                                Width="180"
+                                Margin="5,5,0,0"
+                                Text=" - возможно лишение права   управления ТС"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine3.png" />
+                            <TextBlock
+                                Width="180"
+                                Margin="5,5,0,0"
+                                Text=" - возможен административный арест"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine4.png" />
+                            <TextBlock
+                                Width="180"
+                                Margin="5,5,0,0"
+                                Text=" - возможны общественные работы"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+
+                    </StackPanel>
 
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        FontFamily="Arial Bold"
-                        FontSize="15"
-                        Text="Условные обозначения" />
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine2.png" />
-                        <TextBlock Margin="5,5,0,0" Text=" - лишение права управления ТС" />
-                    </StackPanel>
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine.png" />
-                        <TextBlock
-                            Width="180"
-                            Margin="5,5,0,0"
-                            Text=" - возможно лишение права   управления ТС"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine3.png" />
-                        <TextBlock
-                            Width="180"
-                            Margin="5,5,0,0"
-                            Text=" - возможен административный арест"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                        <Image Source="D:\Мои проекты\4 сем\Курсовая\Kursach\Kursach\imgs\fine4.png" />
-                        <TextBlock
-                            Width="180"
-                            Margin="5,5,0,0"
-                            Text=" - возможны общественные работы"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
+            </ScrollViewer>
 
-                </StackPanel>
-
-            </StackPanel>
         </Grid>
     </Grid>
 </Page>

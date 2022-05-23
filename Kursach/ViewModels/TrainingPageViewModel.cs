@@ -61,6 +61,7 @@ namespace Kursach.ViewModels
             else
             ticketPage.DataContext = new TicketPageViewModel(SelectedTicket, this);
             win.Content = ticketPage;
+            win.WindowStyle = WindowStyle.None;
             win.Show();
         }
         public void CloseTicket()

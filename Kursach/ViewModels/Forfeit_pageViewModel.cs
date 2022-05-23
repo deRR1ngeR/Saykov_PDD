@@ -24,20 +24,12 @@ namespace Kursach.ViewModels
         {
 
             db = new SAYKOV_PDDContext();
-            db.FineThems.Load();
-            db.Fines.Load();
-            Them = db.FineThems.Local.ToObservableCollection();
-            Info = db.Fines.Local.ToObservableCollection();
-            
-            
-        }
-        public ICommand OpenPageCommand { get; set; }
-
-        public void OnOpenPageCommandExecuted(object p)
-        {
            
-
+            Them = new ObservableCollection<FineThem>(db.FineThems.ToList());
+            Info = new ObservableCollection<Fine> (db.Fines.ToList());
+            
+            
         }
-        public bool CanOpenPageCommandExecute(object p) => true;
+        
     }
 }
