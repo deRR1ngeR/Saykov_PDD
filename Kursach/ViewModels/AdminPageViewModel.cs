@@ -17,6 +17,7 @@ namespace Kursach.ViewModels
 {
     internal class AdminPageViewModel : ViewModel, INotifyPropertyChanged
     {
+        MainWindowViewModel MWindowMV;
         readonly SAYKOV_PDDContext db;
         MainWindowViewModel mainMW = new MainWindowViewModel();
 
@@ -36,8 +37,9 @@ namespace Kursach.ViewModels
             get { return _UsersCollection; }
             set => Set(ref _UsersCollection, value);
         }
-        public AdminPageViewModel()
+        public AdminPageViewModel(MainWindowViewModel MWindow)
         {
+            MWindowMV= MWindow;
             db = new SAYKOV_PDDContext();
             UsersCollection = new ObservableCollection<Login>(db.Logins.ToList());
             DeleteUserCommand = new RelayCommand(OnDeleteUserCommandExecuted, CanDeleteUserCommandExecute);
@@ -46,11 +48,19 @@ namespace Kursach.ViewModels
         public bool CanDeleteUserCommandExecute(object p) => true;
         public void OnDeleteUserCommandExecuted(object p)
         {
-            db.Logins.Remove(SelectedUser);
-            db.SaveChanges();
-            using (var dbcon = new SAYKOV_PDDContext())
+            try
             {
-                UsersCollection = new ObservableCollection<Login>(dbcon.Logins);
+
+                db.Logins.Remove(SelectedUser);
+                db.SaveChanges();
+                using (var dbcon = new SAYKOV_PDDContext())
+                {
+                    UsersCollection = new ObservableCollection<Login>(dbcon.Logins);
+
+                }
+            }
+            catch(Exception ex)
+            {
 
             }
         }

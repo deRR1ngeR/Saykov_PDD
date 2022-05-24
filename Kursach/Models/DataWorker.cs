@@ -55,20 +55,28 @@ namespace Kursach.Models
         }
         public static bool AddUser(string NameUser, string PasswordUser, string? Num, string UserName, string UserSurname)
         {
+            try
+            {
 
-            if (!CheckUser(NameUser, PasswordUser, Num))
-                using (var bd = new SAYKOV_PDDContext())
-                {
+                if (!CheckUser(NameUser, PasswordUser, Num))
+                    using (var bd = new SAYKOV_PDDContext())
+                    {
 
-                    string pass = passwordHasher.HashPassword(PasswordUser);
-                    bd.Logins.Add(new Login { Name = NameUser, Password = pass, Phone = Num, IsAdmin = false, UserName = UserName, UserSurname = UserSurname, RegDate = DateTime.Now });
-                    bd.SaveChanges();
-                    return true;
-                }
-            else
+                        string pass = passwordHasher.HashPassword(PasswordUser);
+                        bd.Logins.Add(new Login { Name = NameUser, Password = pass, Phone = Num, IsAdmin = false, UserName = UserName, UserSurname = UserSurname, RegDate = DateTime.Now });
+                        bd.SaveChanges();
+                        return true;
+                    }
+                else
+
                     return false;
-            
-        }
+            }
+            catch (Exception ex) {
+                return false;
+            }
+
+
+}
         public static void AddResult(int RightAnswersCount, int WrongAnswersCount, int ticketId)
         {
             if (WrongAnswersCount > 1) 

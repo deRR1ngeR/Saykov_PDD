@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Kursach.Views.Windows
+namespace Kursach
 {
     /// <summary>
     /// Логика взаимодействия для AddAnswers.xaml
     /// </summary>
-    public partial class AddAnswers : Page
+    public partial class AddAnswersPage : Page
     {
-        public AddAnswers()
+        public AddAnswersPage()
         {
             InitializeComponent();
         }

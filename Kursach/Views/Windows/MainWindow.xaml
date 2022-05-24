@@ -19,8 +19,46 @@
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="Reg" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+            
+            <Style.Setters>
+                
+            </Style.Setters>
+            <Style.Triggers>
+                <MultiDataTrigger>
+
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserName}" Value="True"/>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserSurname}" Value="True"/>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserNum}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False"/>
+
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Auth" BasedOn="{StaticResource MaterialDesignRaisedLightButton}">
+
+            <Style.Setters>
+
+            </Style.Setters>
+            <Style.Triggers>
+                <MultiDataTrigger>
+
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=UserName}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="False"/>
+
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        <Frame Content="{Binding StartPage}" />
+        <Frame Content="{Binding StartPage}" NavigationUIVisibility="Hidden"/>
 
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
@@ -116,6 +154,7 @@
                         </materialdesign:HintAssist.Hint>
                     </TextBox>
                     <TextBox
+                        x:Name="UserName"
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
                         
@@ -123,7 +162,7 @@
                         <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <jas:InputValidationRule
-                                    ErrorMessage="Введите ваше Имя"/>
+                                    ErrorMessage="Введите номер телефона"/>
                             </Binding.ValidationRules>
                         </Binding>
                         <i:Interaction.Triggers>
@@ -136,6 +175,7 @@
                         </materialdesign:HintAssist.Hint>
                     </TextBox>
                     <TextBox
+                        x:Name="UserSurname"
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
                         >
@@ -155,7 +195,9 @@
                             <TextBlock Text="Фамилия" />
                         </materialdesign:HintAssist.Hint>
                     </TextBox>
+                    
                     <TextBox
+                        x:Name="UserNum"
                         Margin="0,5"
                         BorderThickness="0,0,0,1"
                         >
@@ -182,6 +224,8 @@
 
 
                     <Button
+                        
+                        x:Name="AuthBtn"
                         Width="100"
                         Height="20"
                         Margin="-5,2,0,0"
@@ -198,6 +242,7 @@
                         Margin="0,5"
                         Command="{Binding RegUserCommand}"
                         CommandParameter="{Binding ElementName=Login}"
+                        Style="{StaticResource Reg}"
                         Content="Зарегистрироваться"
                         FontSize="16" />
                 </StackPanel>
@@ -261,6 +306,7 @@
                         Foreground="Blue"
                         Style="{StaticResource MaterialDesignFlatMidBgButton}" />
                     <Button
+                        Style="{StaticResource Auth}"
                         Width="80"
                         Margin="0,5"
                         Command="{Binding AuthButtonClickCommand}"

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using Kursach.Views.Windows;
 using System.Text.RegularExpressions;
+using System.Windows.Navigation;
 
 namespace Kursach.ViewModels
 {
@@ -133,10 +134,9 @@ namespace Kursach.ViewModels
                     if(CurrentUser.getInstance().IsAdmin == true)
                     {
                         StartPage = new AdminStartPage();
-                        StartPage.DataContext = new AdminPageViewModel();
+                        StartPage.DataContext = new AdminPageViewModel(this);
                     }
 
-                    StartPage.ShowsNavigationUI = false;
                     mWindow.MainGrid.Visibility = Visibility.Hidden;
                 }
                 else
@@ -184,7 +184,7 @@ namespace Kursach.ViewModels
            
         } public void NameValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$");
+            Regex regex = new Regex(@"([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$");
             regex.Replace(" ", "");
             e.Handled = regex.IsMatch(e.Text);
         }

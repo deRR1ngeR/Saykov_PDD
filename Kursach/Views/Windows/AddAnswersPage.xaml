@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Kursach.Views.Windows.AddAnswers"
+    x:Class="Kursach.AddAnswersPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,8 @@
     d:DesignHeight="600"
     d:DesignWidth="1200"
     Background="White"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Page.DataContext>
         <vm:AddAnswersPageViewModel />
     </Page.DataContext>
@@ -24,7 +25,6 @@
             <RowDefinition Height="0.35*" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Frame Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Grid
             Grid.Row="0"
             Grid.Column="0"
@@ -157,7 +157,7 @@
                         FontFamily="Arial Bold"
                         FontSize="18"
                         Foreground="White"
-                        Text="Добавить билет" />
+                        Text="Ответы к билету" />
                 </StackPanel>
                 <StackPanel
                     Grid.RowSpan="2"
@@ -178,8 +178,11 @@
                             Margin="25,0,0,0"
                             HorizontalAlignment="Left"
                             Background="White"
-                            Text="{Binding TicketId}" />
+                            Text="{Binding Answer1}" 
+                            />
+                        
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" Width="453">
                     <StackPanel Margin="25,0,0,0">
                         <TextBlock
                             Margin="25,0,15,0"
@@ -187,7 +190,7 @@
                             FontSize="14"
                             Foreground="White"
                             Text="Правильный ответ" />
-                        <ComboBox Height="30">
+                        <ComboBox Height="30" SelectedItem="{Binding TrueAnswer1}">
                             <ComboBoxItem>
                                 <TextBlock
                                     FontFamily="Arial Bold"
@@ -195,7 +198,7 @@
                                     Foreground="Black"
                                     Text="Да" />
                             </ComboBoxItem>
-
+                            
                             <ComboBoxItem>
                                 <TextBlock
                                     FontFamily="Arial Bold"
@@ -204,7 +207,24 @@
                                     Text="Нет" />
                             </ComboBoxItem>
                         </ComboBox>
-
+                        </StackPanel>
+                        <StackPanel Margin="25 0 0 0">
+                            <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Номер вопроса" />
+                            <TextBox
+                                materialdesign:HintAssist.Hint="{Binding StringFormat=Количество билетов: {0}, Path=TicketsCount}"
+                            Width="120"
+                            Height="30"
+                            Margin="25,0,0,0"
+                            HorizontalAlignment="Left"
+                            Background="White"
+                            Text="{Binding QstnId}" 
+                            />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel
@@ -228,10 +248,11 @@
                             Margin="25,5,0,0"
                             HorizontalAlignment="Left"
                             Background="White"
-                            Text="{Binding QstnText}" />
+                            Text="{Binding Answer2}" />
                     </StackPanel>
                     <StackPanel Margin="25,0,0,0">
                         <ComboBox
+                            SelectedItem="{Binding TrueAnswer2}"
                             Width="171.966666666667"
                             Height="30"
                             Margin="0,20,0,0">
@@ -272,10 +293,11 @@
                             Margin="25,5,0,0"
                             HorizontalAlignment="Left"
                             Background="White"
-                            Text="{Binding ImgSource}" />
+                            Text="{Binding Answer3}" />
                     </StackPanel>
                     <StackPanel Margin="25,0,0,0">
                         <ComboBox
+                            SelectedItem="{Binding TrueAnswer3}"
                             Width="171.966666666667"
                             Height="30"
                             Margin="0,20,0,0">
@@ -317,10 +339,11 @@
                             Margin="25,5,0,0"
                             HorizontalAlignment="Left"
                             Background="White"
-                            Text="{Binding NumberInTicket}" />
+                            Text="{Binding Answer4}" />
                     </StackPanel>
                     <StackPanel Margin="25,0,0,0">
                         <ComboBox
+                            SelectedItem="{Binding TrueAnswer4}"
                             Width="171.966666666667"
                             Height="30"
                             Margin="0,20,0,0">
@@ -362,10 +385,11 @@
                             Margin="25,5,0,0"
                             HorizontalAlignment="Left"
                             Background="White"
-                            Text="{Binding NumberInTicket}" />
+                            Text="{Binding Answer5}" />
                     </StackPanel>
                     <StackPanel Margin="25,0,0,0">
                         <ComboBox
+                            SelectedItem="{Binding TrueAnswer5}"
                             Width="171.966666666667"
                             Height="30"
                             Margin="0,20,0,0">

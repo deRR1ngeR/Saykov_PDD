@@ -158,7 +158,7 @@
                         HorizontalAlignment="Center"
                         AutoGenerateColumns="False"
                         IsReadOnly="True"
-                        
+                        SelectedItem="{Binding SelectedUser}"
                         ItemsSource="{Binding UsersCollection,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         VerticalScrollBarVisibility="Visible">
                         <DataGrid.Columns >

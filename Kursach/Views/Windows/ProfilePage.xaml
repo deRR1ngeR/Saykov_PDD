@@ -7,10 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
     Title="ProfilePage"
-    ShowsNavigationUI="False"
-     d:DesignHeight="600"
-  d:DesignWidth="1200"
+    d:DesignHeight="600"
+    d:DesignWidth="1200"
     Background="White"
+    ShowsNavigationUI="False"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -65,14 +65,30 @@
             <StackPanel
                 Grid.Row="1"
                 Grid.Column="0"
-                Width="185"
+                Width="275"
                 Height="35"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Bottom">
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <Button
+                    Width="90"
+                    Height="35"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Background="#0E8CA4"
+                    BorderThickness="0">
+                    <Hyperlink
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        TextDecorations="None">
+                        Меню
+                    </Hyperlink>
+                </Button>
                 <Button
                     Width="170"
                     Height="35"
-                    Margin="15,0,0,0"
+                    Margin="0,0,0,0"
                     HorizontalAlignment="Right"
                     Background="#55ACBE"
                     BorderThickness="0"
@@ -136,7 +152,7 @@
                     FontSize="25"
                     Foreground="White"
                     Text="Статистика по билетам:" />
-                <StackPanel Orientation="Vertical">
+                <StackPanel Height="143" Orientation="Vertical">
                     <TextBlock
                         FontSize="20"
                         Foreground="White"
@@ -145,10 +161,14 @@
                         FontSize="20"
                         Foreground="White"
                         Text="{Binding StringFormat=Не сдано - {0}, Path=UnpassedCount}" />
+
                 </StackPanel>
 
             </StackPanel>
-            <StackPanel Margin="403,40,0,3" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <StackPanel
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Margin="403,40,0,3">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
                         FontFamily="Arial Bold"
@@ -186,9 +206,7 @@
                         Foreground="White"
                         Text="{Binding regDate}" />
                 </StackPanel>
-                <StackPanel
-                    Height="268"
-                    Margin="0,25,0,0">
+                <StackPanel Height="268" Margin="0,25,0,0">
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontFamily="Arial Bold"
@@ -197,12 +215,13 @@
                         Text="Результаты" />
                     <DataGrid
                         Width="550"
+                        Height="226"
                         Margin="0,15,0,0"
                         HorizontalAlignment="Center"
                         AutoGenerateColumns="False"
                         IsReadOnly="True"
                         ItemsSource="{Binding tResults}"
-                        VerticalScrollBarVisibility="Visible" Height="226">
+                        VerticalScrollBarVisibility="Visible">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="120"

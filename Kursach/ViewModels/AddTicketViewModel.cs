@@ -1,21 +1,41 @@
 ﻿using Kursach.Infrastructure.Commands;
+using Kursach.Models;
+using Kursach.Models.Base;
 using Kursach.ViewModels.Base;
-using System;
-using System.Collections.Generic;
+using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Navigation;
+using System.Windows;
 
 namespace Kursach.ViewModels
 {
-    internal class AddTicketViewModel: ViewModel
+    internal class AddTicketViewModel : ViewModel
     {
+        private SAYKOV_PDDContext db;
+        private Page _AnswersPage;
+        public Page AnswersPage
+        {
+            get => _AnswersPage;
+            set => Set(ref _AnswersPage, value);
+        }
+
+        private readonly OpenFileDialog _openFileDialog = new OpenFileDialog();
         private int _TicketId;
         public int TicketId
         {
             get => _TicketId;
             set => Set(ref _TicketId, value);
+        }
+        private string _ImagePath;
+        public string ImagePath
+        {
+            get => _ImagePath;
+            set => Set(ref _ImagePath, value);
         }
         private int _QstnId;
         public int QstnId
@@ -29,21 +49,86 @@ namespace Kursach.ViewModels
             get => _QstnText;
             set => Set(ref _QstnText, value);
         }
-        private string _ImgSource;
-        public string ImgSource { get=> _ImgSource; set => Set(ref _ImgSource, value); }
-        private string _NumberInTicket;
-        public string NumberInTicket { get => _NumberInTicket; set => Set(ref _NumberInTicket, value); }
+        private ObservableCollection<Ticket> _TicketsCollection;
+        public ObservableCollection<Ticket> TicketsCollection
+        {
+            get => _TicketsCollection;
+            set => Set(ref _TicketsCollection, value);
+        }
+
+        private ObservableCollection<Question> _QstnsCollection;
+        public ObservableCollection<Question> QstnsCollection
+        {
+            get => _QstnsCollection;
+            set => Set(ref _QstnsCollection, value);
+        }
+
+
+        private int _NumberInTicket;
+        public int NumberInTicket { get => _NumberInTicket; set => Set(ref _NumberInTicket, value); }
 
         public AddTicketViewModel()
         {
+            db = new SAYKOV_PDDContext();
+            TicketsCollection = new ObservableCollection<Ticket>(db.Tickets.ToList());
+            QstnsCollection = new ObservableCollection<Question>(db.Questions.ToList());
             AddAnswersCommand = new RelayCommand(OnAddAnswersCommandExecuted, CanAddAnswersCommandExecute);
+            AddImageCommand = new RelayCommand(OnAddImageCommandExecuted, CanAddImageCommandExecute);
+            AddQuestionCommand = new RelayCommand(OnAddQuestionCommandExecuted, CanAddQuestionCommandExecute);
         }
+        public ICommand AddQuestionCommand { get; set; }
+        public bool CanAddQuestionCommandExecute(object p) => true;
+        public void OnAddQuestionCommandExecuted(object p)
+        {
+            bool flag = false;
+            using (var db = new SAYKOV_PDDContext())
+            {
+                foreach (var ticket in TicketsCollection)
+                {
+                    if (TicketId == ticket.TicketId)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag != true)
+                {
+                    db.Tickets.Add(new Ticket { TicketId = this.TicketId });
+                    db.SaveChanges();
+                }
 
+                flag = false;
+                foreach (var question in QstnsCollection)
+                {
+                    if (QstnId == question.QuestionId)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag != true)
+                {
+                    db.Questions.Add(new Question { QuestionId = QstnId, QuestionText = QstnText, TicketId = this.TicketId, QuestionImg = ImagePath, NumberInTicket = this.NumberInTicket });
+                    db.SaveChanges();
+                }
+            }
+        }
         public ICommand AddAnswersCommand { get; set; }
         public bool CanAddAnswersCommandExecute(object p) => true;
         public void OnAddAnswersCommandExecuted(object p)
         {
+            AnswersPage = new AddAnswersPage();
+            AnswersPage.DataContext = new AddAnswersPageViewModel();
 
+        }
+        public ICommand AddImageCommand { get; set; }
+        public bool CanAddImageCommandExecute(object p) => true;
+        public void OnAddImageCommandExecuted(object p)
+        {
+            _openFileDialog.Filter = "Image files (*.BMP, *.JPG, *.GIF, *.TIF, *.PNG, *.ICO, *.EMF, *.WMF)" +
+                                 "|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
+            _openFileDialog.ShowDialog();
+            ImagePath = _openFileDialog.FileName;
         }
     }
 }

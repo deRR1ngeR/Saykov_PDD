@@ -1,14 +1,7 @@
 ﻿using Kursach.Models.Base;
 using Kursach.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using System.Windows.Input;
-using Kursach.Infrastructure.Commands;
 using Kursach.ViewModels.Base;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
