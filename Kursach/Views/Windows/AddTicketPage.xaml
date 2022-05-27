@@ -16,7 +16,7 @@
     Background="White"
     mc:Ignorable="d">
     <Page.DataContext>
-        <vm:AddForfeitViewModel />
+        <vm:AddTicketViewModel />
     </Page.DataContext>
 
     <Grid>
@@ -29,7 +29,7 @@
             <RowDefinition Height="0.35*" />
             <RowDefinition />
         </Grid.RowDefinitions>
-     
+
 
         <Grid
             Grid.Row="0"
@@ -122,29 +122,44 @@
                     Height="67"
                     Margin="0,45,0,0"
                     Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="МЕНЮ"
-                    FontFamily="Arial Bold"
-                    FontSize="13"
-                    Foreground="white" />
+                    BorderThickness="0,0,0,1">
+                    <Hyperlink
+                        FontFamily="Arial Bold"
+                        FontSize="13"
+                        Foreground="white"
+                        NavigateUri="StartPage.xaml"
+                        TextDecorations="None">
+                        МЕНЮ
+                    </Hyperlink>
+                </Button>
                 <Button
-                    Height="67"
+                    Height="56"
                     Margin="0,25,0,0"
                     Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="ИЗМЕНЕНИЯ В ПДД"
-                    FontFamily="Arial Bold "
-                    FontSize="13"
-                    Foreground="White" />
+                    BorderThickness="0">
+                    <Hyperlink
+                        FontFamily="Arial Bold "
+                        FontSize="12"
+                        Foreground="White"
+                        NavigateUri="AddForfeitPage.xaml"
+                        TextDecorations="None">
+                        ДОБАВИТЬ ШТРАФЫ
+                    </Hyperlink>
+                </Button>
                 <Button
-                    Height="104"
+                    Height="56"
                     Margin="0,25,0,0"
                     Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="РАЗМЕРЫ ШТРАФОВ"
-                    FontFamily="Arial Bold "
-                    FontSize="12"
-                    Foreground="White" />
+                    BorderThickness="0">
+                    <Hyperlink
+                        FontFamily="Arial Bold "
+                        FontSize="12"
+                        Foreground="White"
+                        NavigateUri="AddTafficRulesPage.xaml"
+                        TextDecorations="None">
+                        ДОБАВИТЬ ПДД
+                    </Hyperlink>
+                </Button>
             </StackPanel>
             <Grid Grid.Column="1" Margin="0,-10,0,10">
                 <Grid.RowDefinitions>
@@ -176,7 +191,7 @@
                             FontFamily="Arial Bold"
                             FontSize="14"
                             Foreground="White"
-                            Text="Тема штрафа" />
+                            Text="Билет" />
                         <TextBox
                             Width="120"
                             Height="30"

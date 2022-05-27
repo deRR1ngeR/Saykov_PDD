@@ -11,13 +11,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
     Title="AddForfeitPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="600"
+    d:DesignWidth="1200"
     Background="White"
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <vm:AddTrafficViewModel />
+        <vm:AddForfeitViewModel />
     </Page.DataContext>
 
     <Grid>
@@ -119,33 +119,54 @@
                 Grid.Column="0"
                 Margin="6,10,6,10"
                 Background="#55ACBE">
-                <Button
-                    Height="67"
-                    Margin="0,45,0,0"
-                    Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="МЕНЮ"
-                    FontFamily="Arial Bold"
-                    FontSize="13"
-                    Foreground="white" />
-                <Button
-                    Height="67"
-                    Margin="0,25,0,0"
-                    Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="ИЗМЕНЕНИЯ В ПДД"
-                    FontFamily="Arial Bold "
-                    FontSize="13"
-                    Foreground="White" />
-                <Button
-                    Height="104"
-                    Margin="0,25,0,0"
-                    Background="#55ACBE"
-                    BorderThickness="0,0,0,1"
-                    Content="РАЗМЕРЫ ШТРАФОВ"
-                    FontFamily="Arial Bold "
-                    FontSize="12"
-                    Foreground="White" />
+                <StackPanel
+                    Grid.Column="0"
+                    Margin="6,10,6,10"
+                    Background="#55ACBE">
+                    <Button
+                        Height="67"
+                        Margin="0,45,0,0"
+                        Background="#55ACBE"
+                        BorderThickness="0,0,0,1">
+                        <Hyperlink
+                            FontFamily="Arial Bold"
+                            FontSize="13"
+                            Foreground="white"
+                            NavigateUri="StartPage.xaml"
+                            TextDecorations="None">
+                            МЕНЮ
+                        </Hyperlink>
+                    </Button>
+                    <Button
+                        Height="56"
+                        Margin="0,25,0,0"
+                        Background="#55ACBE"
+                        BorderThickness="0,0,0,1">
+                        <Hyperlink
+                            FontFamily="Arial Bold "
+                            FontSize="13"
+                            Foreground="White"
+                            NavigateUri="AddTicketPage.xaml"
+                            TextDecorations="None">
+                            ДОБАВИТЬ БИЛЕТ
+                        </Hyperlink>
+                    </Button>
+
+                    <Button
+                        Height="56"
+                        Margin="0,25,0,0"
+                        Background="#55ACBE"
+                        BorderThickness="0">
+                        <Hyperlink
+                            FontFamily="Arial Bold "
+                            FontSize="13"
+                            Foreground="White"
+                            NavigateUri="AddTafficRulesPage.xaml"
+                            TextDecorations="None">
+                            ДОБАВИТЬ ПДД
+                        </Hyperlink>
+                    </Button>
+                </StackPanel>
             </StackPanel>
             <Grid Grid.Column="1" Margin="0,-10,0,10">
                 <Grid.RowDefinitions>
@@ -157,7 +178,10 @@
 
 
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Margin="131,15,131,0">
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Margin="131,15,131,60">
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontFamily="Arial Bold"
@@ -169,53 +193,42 @@
                     Grid.RowSpan="2"
                     Height="51"
                     Margin="0,44,0,0"
-                    VerticalAlignment="Top"
                     Orientation="Horizontal">
+
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock
                             Margin="25,0,0,5"
                             FontFamily="Arial Bold"
                             FontSize="14"
                             Foreground="White"
-                            Text="Билет" />
+                            Text="Тема штрафа" />
                         <TextBox
-                            Width="120"
+                            Width="353"
                             Height="30"
                             Margin="25,0,0,0"
                             HorizontalAlignment="Left"
-                            Background="White">
-                            <Binding Path="TicketId" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <jas:InputValidationRule ErrorMessage="Введите номер билета" />
-                                </Binding.ValidationRules>
-                            </Binding>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewTextInput">
-                                    <ei:CallMethodAction MethodName="NumberValidationTextBox" TargetObject="{Binding}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                            Background="White"
+                            Text="{Binding ForfeitThem}">
                             <materialdesign:HintAssist.Hint>
-                                <TextBlock Text="Номер билета" />
+                                <TextBlock Text="Введите тему" />
                             </materialdesign:HintAssist.Hint>
                         </TextBox>
-
-
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right">
+                    <StackPanel Margin="15,0,0,0">
                         <TextBlock
-                            Margin="25,0,0,0"
+                            Margin="25,0,0,5"
                             FontFamily="Arial Bold"
                             FontSize="14"
                             Foreground="White"
-                            Text="id Вопроса" />
+                            Text="id темы" />
                         <TextBox
                             Width="120"
                             Height="30"
                             Margin="25,5,0,0"
                             HorizontalAlignment="Left"
-                            materialdesign:HintAssist.Hint="{Binding QstnCount}"
+                            materialdesign:HintAssist.Hint="{Binding ThemCount}"
                             Background="White">
-                            <Binding Path="QstnId" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="ThemId" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <jas:InputValidationRule ErrorMessage="Введите номер билета" />
                                 </Binding.ValidationRules>
@@ -228,27 +241,49 @@
                         </TextBox>
                     </StackPanel>
                 </StackPanel>
+                <StackPanel />
+
                 <StackPanel
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Grid.RowSpan="2"
                     Height="80"
-                    Margin="0,87,0,0"
-                    VerticalAlignment="Top">
-                    <TextBlock
-                        Margin="25,0,15,0"
-                        FontFamily="Arial Bold"
-                        FontSize="14"
-                        Foreground="White"
-                        Text="Текст вопроса" />
-                    <TextBox
-                        Width="350"
-                        Height="60"
-                        Margin="25,5,0,0"
-                        HorizontalAlignment="Left"
-                        AcceptsReturn="True"
-                        Background="White"
-                        Text="{Binding QstnText}"
-                        TextWrapping="Wrap" />
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <StackPanel Margin="0,5,0,0">
+
+                        <TextBlock
+                            Margin="25,0,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Текст штрафа" />
+                        <TextBox
+                            Width="350"
+                            Height="46"
+                            Margin="25,5,0,0"
+                            HorizontalAlignment="Left"
+                            AcceptsReturn="True"
+                            Background="White"
+                            Text="{Binding ForfeitText}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                    <StackPanel Margin="15,0,0,0">
+                        <TextBlock
+                            Margin="25,5,15,0"
+                            FontFamily="Arial Bold"
+                            FontSize="14"
+                            Foreground="White"
+                            Text="Сумма штрафа" />
+                        <TextBox
+                            Width="160"
+                            Height="30"
+                            Margin="25,21,0,0"
+                            HorizontalAlignment="Left"
+                            AcceptsReturn="True"
+                            Background="White"
+                            Text="{Binding ForfeitCost}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="3"
@@ -271,7 +306,7 @@
                             Text="{Binding ImagePath}"
                             TextWrapping="Wrap" />
                         <Button
-                            Margin="15,0,0,0"
+                            Margin="40,0,0,0"
                             Background="#55ACBE"
                             BorderThickness="0"
                             Command="{Binding AddImageCommand}"
@@ -280,7 +315,7 @@
                 </StackPanel>
                 <StackPanel
                     Grid.Row="4"
-                    Width="250"
+                    Width="280"
                     Height="46"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top">
@@ -289,43 +324,25 @@
                         FontFamily="Arial Bold"
                         FontSize="14"
                         Foreground="White"
-                        Text="Номер вопроса в билете" />
+                        Text="Время ограничения за нарушение" />
                     <TextBox
-                        Width="120"
+                        Width="188"
                         Height="30"
                         Margin="25,5,0,0"
                         HorizontalAlignment="Left"
                         AcceptsReturn="True"
                         Background="White"
-                        TextWrapping="Wrap">
-                        <Binding Path="NumberInTicket" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <jas:InputValidationRule ErrorMessage="Введите номер билета" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewTextInput">
-                                <ei:CallMethodAction MethodName="NumberValidationTextBox" TargetObject="{Binding}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </TextBox>
+                        Text="{Binding ForfeitTime}"
+                        TextWrapping="Wrap" />
                 </StackPanel>
                 <StackPanel
                     Grid.Row="4"
-                    Width="313"
+                    Width="171"
                     Margin="0,0,25,15"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal">
-                    <Button Command="{Binding AddQuestionCommand}" Content="Добавить вопрос" />
-                    <Button Margin="15,0,0,0">
-                        <Hyperlink
-                            Foreground="White"
-                            NavigateUri="AddAnswersPage.xaml"
-                            TextDecorations="None">
-                            Добавить ответы
-                        </Hyperlink>
-                    </Button>
+                    <Button Command="{Binding AddForfeitInfoCommand}" Content="Внести информацию" />
                 </StackPanel>
             </Grid>
         </Grid>

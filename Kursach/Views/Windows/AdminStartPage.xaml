@@ -5,6 +5,7 @@
     xmlns:cmd="clr-namespace:Kursach.Infrastructure.Commands"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Kursach.Views.Windows"
+    xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
     Title="AdminStartPage"
@@ -115,15 +116,15 @@
                 <Button
                     Height="67"
                     Margin="0,45,0,0"
-                    Background="Red"
+                    Background="#55ACBE"
                     BorderThickness="0,0,0,1">
                     <Hyperlink
                         FontFamily="Arial Bold"
                         FontSize="13"
                         Foreground="white"
-                        NavigateUri="TrainingPage.xaml"
+                        NavigateUri="StartPage.xaml"
                         TextDecorations="None">
-                        ТРЕНИРОВКА ПДД
+                        МЕНЮ
                     </Hyperlink>
                 </Button>
                 <Button
@@ -149,7 +150,7 @@
                         FontFamily="Arial Bold "
                         FontSize="12"
                         Foreground="White"
-                        NavigateUri=""
+                        NavigateUri="AddForfeitPage.xaml"
                         TextDecorations="None">
                         ИЗМЕНИТЬ ШТРАФЫ
                     </Hyperlink>
@@ -182,7 +183,7 @@
                         Foreground="White"
                         Text="Список пользователей" />
                     <DataGrid
-                        Width="750"
+                        Width="770"
                         Height="226"
                         Margin="0,15,0,0"
                         HorizontalAlignment="Center"
