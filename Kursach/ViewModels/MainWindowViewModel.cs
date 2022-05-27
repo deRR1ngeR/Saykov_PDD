@@ -21,7 +21,6 @@ namespace Kursach.ViewModels
 {
     internal class MainWindowViewModel : ViewModel, INotifyPropertyChanged
     {
-        private int ValidationErrors = 0;
         private SolidColorBrush _bb;
         public SolidColorBrush bb
         {
@@ -134,7 +133,7 @@ namespace Kursach.ViewModels
                     if(CurrentUser.getInstance().IsAdmin == true)
                     {
                         StartPage = new AdminStartPage();
-                        StartPage.DataContext = new AdminPageViewModel(this);
+                        StartPage.DataContext = new AdminPageViewModel();
                     }
 
                     mWindow.MainGrid.Visibility = Visibility.Hidden;

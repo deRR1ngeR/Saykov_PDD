@@ -11,18 +11,14 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Navigation;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace Kursach.ViewModels
 {
     internal class AddTicketViewModel : ViewModel
     {
         private SAYKOV_PDDContext db;
-        private Page _AnswersPage;
-        public Page AnswersPage
-        {
-            get => _AnswersPage;
-            set => Set(ref _AnswersPage, value);
-        }
+        
 
         private readonly OpenFileDialog _openFileDialog = new OpenFileDialog();
         private int _TicketId;
@@ -42,6 +38,12 @@ namespace Kursach.ViewModels
         {
             get => _QstnId;
             set => Set(ref _QstnId, value);
+        }
+        private int _QstnCount;
+        public int QstnCount
+        {
+            get => _QstnCount;
+            set => Set(ref _QstnCount, value);
         }
         private string _QstnText;
         public string QstnText
@@ -67,12 +69,13 @@ namespace Kursach.ViewModels
         private int _NumberInTicket;
         public int NumberInTicket { get => _NumberInTicket; set => Set(ref _NumberInTicket, value); }
 
+       
         public AddTicketViewModel()
         {
             db = new SAYKOV_PDDContext();
             TicketsCollection = new ObservableCollection<Ticket>(db.Tickets.ToList());
             QstnsCollection = new ObservableCollection<Question>(db.Questions.ToList());
-            AddAnswersCommand = new RelayCommand(OnAddAnswersCommandExecuted, CanAddAnswersCommandExecute);
+            QstnCount = QstnsCollection.Count();
             AddImageCommand = new RelayCommand(OnAddImageCommandExecuted, CanAddImageCommandExecute);
             AddQuestionCommand = new RelayCommand(OnAddQuestionCommandExecuted, CanAddQuestionCommandExecute);
         }
@@ -111,15 +114,8 @@ namespace Kursach.ViewModels
                     db.Questions.Add(new Question { QuestionId = QstnId, QuestionText = QstnText, TicketId = this.TicketId, QuestionImg = ImagePath, NumberInTicket = this.NumberInTicket });
                     db.SaveChanges();
                 }
+                
             }
-        }
-        public ICommand AddAnswersCommand { get; set; }
-        public bool CanAddAnswersCommandExecute(object p) => true;
-        public void OnAddAnswersCommandExecuted(object p)
-        {
-            AnswersPage = new AddAnswersPage();
-            AnswersPage.DataContext = new AddAnswersPageViewModel();
-
         }
         public ICommand AddImageCommand { get; set; }
         public bool CanAddImageCommandExecute(object p) => true;
@@ -129,6 +125,12 @@ namespace Kursach.ViewModels
                                  "|*.bmp;*.jpg;*.gif; *.tif; *.png; *.ico; *.emf; *.wmf";
             _openFileDialog.ShowDialog();
             ImagePath = _openFileDialog.FileName;
+        }
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[A-Za-zA-я<>%$?!&_/^*@#()+=:;'\\s]");
+            regex.Replace(" ", "");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Kursach.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ProfilePage.xaml
+    /// Логика взаимодействия для AddTafficRulesPage.xaml
     /// </summary>
-    public partial class ProfilePage : Page
+    public partial class AddTafficRulesPage : Page
     {
-        public ProfilePage()
+        public AddTafficRulesPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

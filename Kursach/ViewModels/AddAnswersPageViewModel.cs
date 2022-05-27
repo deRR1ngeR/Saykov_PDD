@@ -5,8 +5,10 @@ using Kursach.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -108,83 +110,114 @@ namespace Kursach.ViewModels
         public bool CanAddAnswersCommandExecute(object p) => true;
         public void OnAddAnswersCommandExecuted(object p)
         {
+            bool isOk = true;
             bool isRight = false;
+            try
+            {
             if(Answer1 != null)
             {
                 if (TrueAnswer1 == null)
                 {
                     MessageBox.Show("Заполните поля: правильный ответ");
+                    isOk = false;
                 }
                 else
                 {
-                    if (TrueAnswer1 == "Да")
+                    if (TrueAnswer1 == "System.Windows.Controls.ComboBoxItem: Да")
                         isRight = true;
-                    else if (TrueAnswer1 == "Нет")
+                    else if (TrueAnswer1 == "System.Windows.Controls.ComboBoxItem: Нет")
                         isRight = false;
                      db.Answers.Add(new Answer { Answer1 = Answer1, QuestionId = QstnId, RightAnswer = isRight });
-                }
 
-            }if(Answer2 != null)
-            {
-                if (TrueAnswer2 == null)
-                {
-                    MessageBox.Show("Заполните поля: правильный ответ");
-                }
-                else
-                {
-                    if (TrueAnswer2 == "Да")
-                        isRight = true;
-                    else if (TrueAnswer2 == "Нет")
-                        isRight = false;
-                     db.Answers.Add(new Answer { Answer1 = Answer2, QuestionId = QstnId, RightAnswer = isRight });
-                }
 
-            }if(Answer3 != null)
-            {
-                if (TrueAnswer3 == null)
-                {
-                    MessageBox.Show("Заполните поля: правильный ответ");
-                }
-                else
-                {
-                    if (TrueAnswer3 == "Да")
-                        isRight = true;
-                    else if (TrueAnswer3 == "Нет")
-                        isRight = false;
-                     db.Answers.Add(new Answer { Answer1 = Answer3, QuestionId = QstnId, RightAnswer = isRight });
-                }
-
-            }if(Answer4 != null)
-            {
-                if (TrueAnswer4 == null)
-                {
-                    MessageBox.Show("Заполните поля: правильный ответ");
-                }
-                else
-                {
-                    if (TrueAnswer4 == "Да")
-                        isRight = true;
-                    else if (TrueAnswer4 == "Нет")
-                        isRight = false;
-                     db.Answers.Add(new Answer { Answer1 = Answer4, QuestionId = QstnId, RightAnswer = isRight });
-                }
-
-            }if(Answer5 != null)
-            {
-                if (TrueAnswer1 == null)
-                {
-                    MessageBox.Show("Заполните поля: правильный ответ");
-                }
-                else
-                {
-                    if (TrueAnswer5 == "Да")
-                        isRight = true;
-                    else if (TrueAnswer5 == "Нет")
-                        isRight = false;
-                     db.Answers.Add(new Answer { Answer1 = Answer5, QuestionId = QstnId, RightAnswer = isRight });
                 }
 
             }
+            if(Answer2 != null)
+            {
+                if (TrueAnswer2 == null)
+                {
+                    isOk = false;
+                    MessageBox.Show("Заполните поля: правильный ответ");
+                }
+                else
+                {
+                    if (TrueAnswer2 == "System.Windows.Controls.ComboBoxItem: Да")
+                        isRight = true;
+                    else if (TrueAnswer2 == "System.Windows.Controls.ComboBoxItem: Нет")
+                        isRight = false;
+                     db.Answers.Add(new Answer { Answer1 = Answer2, QuestionId = QstnId, RightAnswer = isRight });
+
+                }
+
+            }
+            if(Answer3 != null)
+            {
+                if (TrueAnswer3 == null)
+                {
+                    isOk = false;
+                    MessageBox.Show("Заполните поля: правильный ответ");
+                }
+                else
+                {
+                    if (TrueAnswer3 == "System.Windows.Controls.ComboBoxItem: Да")
+                        isRight = true;
+                    else if (TrueAnswer3 == "System.Windows.Controls.ComboBoxItem: Нет")
+                        isRight = false;
+                     db.Answers.Add(new Answer { Answer1 = Answer3, QuestionId = QstnId, RightAnswer = isRight });
+
+                }
+
+            }
+            if(Answer4 != null)
+            {
+                if (TrueAnswer4 == null)
+                {
+                    isOk = false;
+                    MessageBox.Show("Заполните поля: правильный ответ");
+                }
+                else
+                {
+                    if (TrueAnswer4 == "System.Windows.Controls.ComboBoxItem: Да")
+                        isRight = true;
+                    else if (TrueAnswer4 == "System.Windows.Controls.ComboBoxItem: Нет")
+                        isRight = false;
+                     db.Answers.Add(new Answer { Answer1 = Answer4, QuestionId = QstnId, RightAnswer = isRight });
+
+                }
+
+            }
+            if(Answer5 != null)
+            {
+                if (TrueAnswer1 == null)
+                {
+                    isOk = false;
+                    MessageBox.Show("Заполните поля: правильный ответ");
+                }
+                else
+                {
+                    if (TrueAnswer5 == "System.Windows.Controls.ComboBoxItem: Да")
+                        isRight = true;
+                    else if (TrueAnswer5 == "System.Windows.Controls.ComboBoxItem: Нет")
+                        isRight = false;
+                     db.Answers.Add(new Answer { Answer1 = Answer5, QuestionId = QstnId, RightAnswer = isRight });
+
+                }
+            }
+            if(isOk == true)
+            db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Введите корректные данные");
+            }
+
+        }
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[A-Za-zA-я<>%$?!&_/^*@#()+=:;'\\s]");
+            regex.Replace(" ", "");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

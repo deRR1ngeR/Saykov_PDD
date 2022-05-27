@@ -71,21 +71,6 @@
                 VerticalAlignment="Bottom"
                 Orientation="Horizontal">
                 <Button
-                    Width="90"
-                    Height="35"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"
-                    Background="#0E8CA4"
-                    BorderThickness="0">
-                    <Hyperlink
-                        FontFamily="Arial Bold"
-                        FontSize="15"
-                        Foreground="White"
-                        TextDecorations="None">
-                        Меню
-                    </Hyperlink>
-                </Button>
-                <Button
                     Width="170"
                     Height="35"
                     Margin="0,0,0,0"
@@ -96,6 +81,20 @@
                     FontFamily="Arial Bold"
                     FontSize="18"
                     Foreground="White" />
+                <Button
+                    Width="90"
+                    Height="35"
+                    Background="#0E8CA4"
+                    BorderThickness="0">
+                    <Hyperlink
+                        FontFamily="Arial Bold"
+                        FontSize="15"
+                        Foreground="White"
+                        TextDecorations="None"
+                        NavigateUri="StartPage.xaml">
+                        Меню
+                    </Hyperlink>
+                </Button>
             </StackPanel>
 
         </Grid>

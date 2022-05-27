@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Kursach.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ProfilePage.xaml
+    /// Логика взаимодействия для AddForfeitPage.xaml
     /// </summary>
-    public partial class ProfilePage : Page
+    public partial class AddForfeitPage : Page
     {
-        public ProfilePage()
+        public AddForfeitPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

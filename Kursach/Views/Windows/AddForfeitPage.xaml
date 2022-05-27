@@ -1,22 +1,23 @@
 ﻿<Page
-    x:Class="Kursach.AddTicketPage"
+    x:Class="Kursach.Views.AddForfeitPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:jas="clr-namespace:Kursach.Models"
-    xmlns:local="clr-namespace:Kursach.Views.Windows"
+    xmlns:local="clr-namespace:Kursach.Views"
     xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
-    Title="AddTicketPage"
-    d:DesignHeight="600"
-    d:DesignWidth="1200"
+    Title="AddForfeitPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
     Background="White"
     mc:Ignorable="d">
+
     <Page.DataContext>
-        <vm:AddForfeitViewModel />
+        <vm:AddTrafficViewModel />
     </Page.DataContext>
 
     <Grid>
@@ -29,7 +30,7 @@
             <RowDefinition Height="0.35*" />
             <RowDefinition />
         </Grid.RowDefinitions>
-     
+
 
         <Grid
             Grid.Row="0"
@@ -176,7 +177,7 @@
                             FontFamily="Arial Bold"
                             FontSize="14"
                             Foreground="White"
-                            Text="Тема штрафа" />
+                            Text="Билет" />
                         <TextBox
                             Width="120"
                             Height="30"

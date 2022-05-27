@@ -31,8 +31,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Frame Grid.ColumnSpan="4" Grid.RowSpan="3" >    
-                
+            <Frame Grid.ColumnSpan="4" Grid.RowSpan="3" >
+
             </Frame>
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" Text="САЙКОВ" FontSize="25" FontFamily="arial"/>
@@ -60,7 +60,7 @@
                 <RowDefinition Height="15*"/>
 
             </Grid.RowDefinitions>
-            
+
             <StackPanel Grid.Column="0" Background="#55ACBE" Margin="6,10,6,34">
                 <Button Background="#55ACBE"  Margin="0 45 0 0"  >
                     <Hyperlink TextDecorations="None" NavigateUri="StartPage.xaml" Foreground="white" FontFamily="Arial Bold" FontSize="13">МЕНЮ</Hyperlink>
@@ -78,11 +78,11 @@
 
 
             </StackPanel>
-            <StackPanel Grid.Column="1"  Margin="25,15,25,0" VerticalAlignment="Top" Grid.ColumnSpan="2" >
-                <ListBox  Background="#0277BD" ItemsSource="{Binding Tkts}" SelectedItem="{Binding SelectedTicket}" Height="337"  >
+            <StackPanel Grid.Column="1"  Margin="25,15,25,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="337" Background="#0277BD" >
+                <ListBox   ItemsSource="{Binding Tkts}" SelectedItem="{Binding SelectedTicket}" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto"  >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock TextAlignment="Center" FontSize="18" Foreground="#333333" Text="{Binding StringFormat=Контроль по билету № {0}, Path=TicketId}"/>
+                            <TextBlock  FontSize="18" FontFamily="Arial Bold" Foreground="White" Text="{Binding StringFormat=Контроль по билету № {0}, Path=TicketId}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

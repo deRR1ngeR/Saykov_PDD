@@ -153,13 +153,14 @@
                             Width="166"
                             Height="50"
                             Margin="0,15,0,0"
-                            Background="Red"
-                            >
-                            <Hyperlink FontFamily="Arial Bold"
-                            FontSize="14"
-                            Foreground="White">
+                            Background="Red">
+                            <Hyperlink
+                                FontFamily="Arial Bold"
+                                FontSize="14"
+                                Foreground="White"
+                                NavigateUri="TrainingPage.xaml"
+                                TextDecorations="None">
                                 ТРЕНИРОВКА ПДД
-
                             </Hyperlink>
                         </Button>
                         <Button
@@ -182,16 +183,30 @@
                             Height="50"
                             Margin="0,25,0,0"
                             Background="#55ACBE"
-                            BorderThickness="0,0,0,0"
-                            >
-                            <Hyperlink FontFamily="Arial Bold"
-                            FontSize="15"
-                            Foreground="White" TextDecorations="None">
+                            BorderThickness="0,0,0,0">
+                            <Hyperlink
+                                FontFamily="Arial Bold"
+                                FontSize="15"
+                                Foreground="White"
+                                TextDecorations="None">
                                 ВЫХОД В МЕНЮ
                             </Hyperlink>
                         </Button>
-                        <Button   BorderThickness="0 0 0 1" Width="160" Background="#55ACBE"  Height="50"  Margin="0 25 0 0" Visibility="{Binding AdmPageVisibilty}" >
-                            <Hyperlink Foreground="White" FontFamily="Arial Bold " FontSize="12" NavigateUri="AdminStartPage.xaml" TextDecorations="None">АДМИН ПАНЕЛЬ</Hyperlink>
+                        <Button
+                            Width="160"
+                            Height="50"
+                            Margin="0,25,0,0"
+                            Background="#55ACBE"
+                            BorderThickness="0,0,0,1"
+                            Visibility="{Binding AdmPageVisibilty}">
+                            <Hyperlink
+                                FontFamily="Arial Bold "
+                                FontSize="12"
+                                Foreground="White"
+                                NavigateUri="AdminStartPage.xaml"
+                                TextDecorations="None">
+                                АДМИН ПАНЕЛЬ
+                            </Hyperlink>
                         </Button>
 
                     </StackPanel>

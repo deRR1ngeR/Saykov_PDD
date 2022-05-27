@@ -20,6 +20,7 @@ namespace Kursach.ViewModels
 {
     internal class TicketPageViewModel : ViewModel, INotifyPropertyChanged
     {
+        Random r = new Random();
         int RightAnswersCount = 0;
         int WrongAnswersCount = 0;
         int _tiketId;
@@ -401,9 +402,22 @@ namespace Kursach.ViewModels
                         where t.QuestionId == Qstn.QuestionId
                         select t;
 
-            foreach (var t in ansrs)
+            int i = 0;
+            while (ansrs.Count() > i)
             {
-                Answers.Add(t);
+                bool flag = true;
+                var randomanswer = ansrs.ElementAt(r.Next(0, ansrs.Count()));
+                foreach (var a in Answers)
+                {
+                    if (a.AnswersId == randomanswer.AnswersId)
+                        flag = false;
+                }
+                if (flag == true)
+                {
+                    Answers.Add(randomanswer);
+                    i++;
+                }
+
             }
 
         }
@@ -470,8 +484,7 @@ namespace Kursach.ViewModels
         {
             trPageView.CloseTicket();
 
-            if (answered.Count != 0)
-            {
+            
             OptionPage.bt1.Visibility = Visibility.Visible;
 
             #region
@@ -486,7 +499,7 @@ namespace Kursach.ViewModels
             OptionPage.id9.Background = Brushes.LightGray;
             OptionPage.id10.Background = Brushes.LightGray;
             #endregion
-            }
+            
         }
         #region Команды
         public ICommand ClosePageCommand { get; set; }
@@ -528,12 +541,25 @@ namespace Kursach.ViewModels
             var ansrs = from t in an
                         where t.QuestionId == Qstn.QuestionId
                         select t;
-
-            foreach (var t in ansrs)
-            {
-                Answers.Add(t);
-            }
             
+            int i = 0;
+            while(ansrs.Count() > i)
+            {
+                bool flag = true;
+                var randomanswer = ansrs.ElementAt(r.Next(0, ansrs.Count()));
+                foreach(var a in Answers)
+                {
+                    if (a.AnswersId == randomanswer.AnswersId)
+                        flag = false;
+                }
+                if (flag == true)
+                {
+                    Answers.Add(randomanswer);
+                    i++;
+                }
+               
+            }
+
         }
 
         public bool CanClickButtonIdCommandExecute(object p) => true;
@@ -560,9 +586,22 @@ namespace Kursach.ViewModels
                         where t.QuestionId == Qstn.QuestionId
                         select t;
 
-            foreach (var t in ansrs)
+            int i = 0;
+            while (ansrs.Count() > i)
             {
-                Answers.Add(t);
+                bool flag = true;
+                var randomanswer = ansrs.ElementAt(r.Next(0, ansrs.Count()));
+                foreach (var a in Answers)
+                {
+                    if (a.AnswersId == randomanswer.AnswersId)
+                        flag = false;
+                }
+                if (flag == true)
+                {
+                    Answers.Add(randomanswer);
+                    i++;
+                }
+
             }
             if (btnid == "id1")
             {
