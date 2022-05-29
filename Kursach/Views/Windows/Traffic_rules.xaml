@@ -25,7 +25,7 @@
             <RowDefinition Height="0.35*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0" ShowGridLines="true">
+        <Grid Grid.Column="0" Grid.Row="0" ShowGridLines="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
                 <RowDefinition Height="47*"/>
@@ -49,7 +49,7 @@
                 <Image Source="../../imgs/up.png" Height="131" Width="354" />
             </StackPanel>
         </Grid>
-        <Grid Grid.ColumnSpan="2" Grid.Row="1" >
+        <Grid Grid.ColumnSpan="2" Grid.Row="1"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="52*"/>
                 <RowDefinition Height="281*"/>
@@ -76,8 +76,8 @@
                     </ListBox>
                 </StackPanel >
             </ScrollViewer>
-            <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10">
-                <Button  Background="Red"  Height="50" Width="170" Margin="0 10 0 0" >
+            <StackPanel Grid.Row="1" Background="#55ACBE" Margin="10" >
+                <Button  Background="Red"  Height="50" Width="170" Margin="0 75 0 0" >
                     <Hyperlink  TextDecorations="None" NavigateUri="TrainingPage.xaml" Foreground="White"  FontFamily="Arial Bold" FontSize="14" >
                         ТРЕНИРОВКА ПДД
                     </Hyperlink>

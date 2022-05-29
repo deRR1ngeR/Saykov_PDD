@@ -12,13 +12,21 @@ using System.Runtime.CompilerServices;
 using System.Windows.Navigation;
 using System.Windows;
 using System.Text.RegularExpressions;
+using MaterialDesignThemes.Wpf;
+using System.Threading.Tasks;
+using System;
 
 namespace Kursach.ViewModels
 {
     internal class AddTicketViewModel : ViewModel
     {
         private SAYKOV_PDDContext db;
-        
+        private SnackbarMessageQueue _messageQueue;
+        public SnackbarMessageQueue messageQueue
+        {
+            get => _messageQueue;
+            set => Set(ref _messageQueue, value);
+        }
 
         private readonly OpenFileDialog _openFileDialog = new OpenFileDialog();
         private int _TicketId;
@@ -83,39 +91,52 @@ namespace Kursach.ViewModels
         public bool CanAddQuestionCommandExecute(object p) => true;
         public void OnAddQuestionCommandExecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;
             bool flag = false;
-            using (var db = new SAYKOV_PDDContext())
+            try
             {
-                foreach (var ticket in TicketsCollection)
+                using (var db = new SAYKOV_PDDContext())
                 {
-                    if (TicketId == ticket.TicketId)
+                    foreach (var ticket in TicketsCollection)
                     {
-                        flag = true;
-                        break;
+                        if (TicketId == ticket.TicketId)
+                        {
+                            Task.Factory.StartNew(() => messageQueue.Enqueue("Билет с таким id уже существует."));
+                            flag = true;
+                            break;
+                        }
                     }
-                }
-                if (flag != true)
-                {
-                    db.Tickets.Add(new Ticket { TicketId = this.TicketId });
-                    db.SaveChanges();
-                }
+                    if (flag != true)
+                    {
+                        db.Tickets.Add(new Ticket { TicketId = this.TicketId });
+                        db.SaveChanges();
+                    }
 
-                flag = false;
-                foreach (var question in QstnsCollection)
-                {
-                    if (QstnId == question.QuestionId)
+                    flag = false;
+                    foreach (var question in QstnsCollection)
                     {
-                        flag = true;
-                        break;
+                        if (QstnId == question.QuestionId)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag != true)
+                    {
+                        db.Questions.Add(new Question { QuestionId = QstnId, QuestionText = QstnText, TicketId = this.TicketId, QuestionImg = ImagePath, NumberInTicket = this.NumberInTicket });
+                        db.SaveChanges();
+                        Task.Factory.StartNew(() => messageQueue.Enqueue("Вопрос успешно добавлен"));
+
                     }
                 }
-                if (flag != true)
-                {
-                    db.Questions.Add(new Question { QuestionId = QstnId, QuestionText = QstnText, TicketId = this.TicketId, QuestionImg = ImagePath, NumberInTicket = this.NumberInTicket });
-                    db.SaveChanges();
-                }
-                
             }
+            catch (Exception ex)
+            {
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Ошибка внесения информации"));
+
+            }
+
         }
         public ICommand AddImageCommand { get; set; }
         public bool CanAddImageCommandExecute(object p) => true;

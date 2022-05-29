@@ -30,12 +30,12 @@
             <RowDefinition Height="0.35*" />
             <RowDefinition />
         </Grid.RowDefinitions>
-      
+
 
         <Grid
             Grid.Row="0"
             Grid.Column="0"
-            ShowGridLines="True">
+            ShowGridLines="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*" />
                 <RowDefinition Height="47*" />
@@ -169,10 +169,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="73*" />
                     <RowDefinition Height="250*" />
-
-
-
                 </Grid.RowDefinitions>
+                <materialdesign:Snackbar Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 0 130"
+      x:Name="Snackbar"
+  MessageQueue="{Binding messageQueue}" />
                 <StackPanel Grid.Row="0" Margin="131,15,131,0">
                     <TextBlock
                         HorizontalAlignment="Center"
@@ -206,11 +206,12 @@
                 <StackPanel
                     Grid.Row="1"
                     Width="191"
-                    Height="32"
+                    Height="33"
                     Margin="0,0,25,15"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Orientation="Horizontal">
+                    Orientation="Vertical">
+
                     <Button Command="{Binding AddPDDInfoCommand}" Content="Добавить информацию" />
                 </StackPanel>
             </Grid>

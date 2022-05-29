@@ -168,9 +168,10 @@
                     <RowDefinition Height="108*" />
                     <RowDefinition Height="78*" />
                     <RowDefinition Height="127*" />
-
-
                 </Grid.RowDefinitions>
+                <materialdesign:Snackbar Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 0 80"
+      x:Name="Snackbar"
+  MessageQueue="{Binding messageQueue}" />
                 <StackPanel Grid.Row="0" Margin="131,15,131,0">
                     <TextBlock
                         HorizontalAlignment="Center"
@@ -330,8 +331,10 @@
                     Margin="0,0,25,15"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Orientation="Horizontal">
-                    <Button Command="{Binding AddQuestionCommand}" Content="Добавить вопрос" />
+                    Orientation="Vertical">
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding AddQuestionCommand}" Content="Добавить вопрос" />
                     <Button Margin="15,0,0,0">
                         <Hyperlink
                             Foreground="White"
@@ -339,7 +342,8 @@
                             TextDecorations="None">
                             Добавить ответы
                         </Hyperlink>
-                    </Button>
+                    </Button> 
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>

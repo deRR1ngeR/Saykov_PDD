@@ -2,6 +2,7 @@
 using Kursach.Models;
 using Kursach.Models.Base;
 using Kursach.ViewModels.Base;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace Kursach.ViewModels
     internal class AddForfeitViewModel: ViewModel
     {
         private readonly SAYKOV_PDDContext db;
+        private SnackbarMessageQueue _messageQueue;
+        public SnackbarMessageQueue messageQueue
+        {
+            get => _messageQueue;
+            set => Set(ref _messageQueue, value);
+        }
         private readonly OpenFileDialog _openFileDialog = new OpenFileDialog();
         private string _ImagePath;
         public string ImagePath
@@ -59,10 +66,6 @@ namespace Kursach.ViewModels
             get => _ForfeitCost;
             set => Set(ref _ForfeitCost, value);
         }
-
-
-
-
         public AddForfeitViewModel()
         {
             db = new SAYKOV_PDDContext();
@@ -80,12 +83,23 @@ namespace Kursach.ViewModels
         public bool CanAddForfeitInfoCommandExecute(object p) => true;
         public void OnAddForfeitInfoCommandexecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;
+            try
+            {
             if (ForfeitThem != null)
                 db.FineThems.Add(new FineThem { FineText = ForfeitThem });
             db.SaveChanges();
 
             db.Fines.Add(new Fine { FineThemId = ThemId, FineText = ForfeitText, FineCost = ForfeitCost, FineTime = ForfeitTime, FineImg = ImagePath });
             db.SaveChanges();
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Информация успешно добавлена"));
+            }
+            catch(Exception ex)
+            {
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Ошибка добавления информации"));
+
+            }
         }
         public ICommand AddImageCommand { get; set; }
         public bool CanAddImageCommandExecute(object p) => true;

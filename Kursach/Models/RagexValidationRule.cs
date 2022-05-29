@@ -18,7 +18,7 @@ namespace Kursach.Models
 				: new ValidationResult(true, "Field is qqq.");
 		}
 
-		
+
 	}
 
 	public class InputValidationRule : ValidationRule
@@ -46,8 +46,8 @@ namespace Kursach.Models
 			}
 		}
 
-	
-		
+
+
 	}
 
 	public class RegexValidationRule : ValidationRule

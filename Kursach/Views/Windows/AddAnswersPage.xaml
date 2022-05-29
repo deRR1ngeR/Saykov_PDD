@@ -19,7 +19,7 @@
         <vm:AddAnswersPageViewModel />
     </Page.DataContext>
 
-    <Grid ShowGridLines="true">
+    <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -31,7 +31,7 @@
         <Grid
             Grid.Row="0"
             Grid.Column="0"
-            ShowGridLines="True">
+            ShowGridLines="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*" />
                 <RowDefinition Height="47*" />
@@ -106,7 +106,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Background="#55ACBE"
-            ShowGridLines="True">
+            ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="103*" />
                 <ColumnDefinition Width="297*" />
@@ -151,9 +151,10 @@
                     <RowDefinition Height="78*" />
                     <RowDefinition Height="78*" />
                     <RowDefinition Height="127*" />
-
-
                 </Grid.RowDefinitions>
+                <materialdesign:Snackbar Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Top"
+      x:Name="Snackbar"
+  MessageQueue="{Binding messageQueue}" />
                 <StackPanel Grid.Row="0" Margin="131,15,131,0">
                     <TextBlock
                         HorizontalAlignment="Center"
@@ -429,8 +430,10 @@
                     Margin="0,0,0,15"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Orientation="Horizontal">
-                    <Button Command="{Binding AddAnswersCommand}" Content="Добавить ответы" />
+                    Orientation="Vertical">
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding AddAnswersCommand}" Content="Добавить ответы" />
                     <Button Margin="10,0,0,0">
                         <Hyperlink
                             Foreground="White"
@@ -440,7 +443,7 @@
                         </Hyperlink>
                     </Button>
                 </StackPanel>
-
+     </StackPanel>
             </Grid>
         </Grid>
     </Grid>

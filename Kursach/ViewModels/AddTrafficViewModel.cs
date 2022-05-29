@@ -9,12 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Kursach.Infrastructure.Commands;
+using MaterialDesignThemes.Wpf;
 
 namespace Kursach.ViewModels
 {
     internal class AddTrafficViewModel: ViewModel
     {
         private SAYKOV_PDDContext db;
+        private SnackbarMessageQueue _messageQueue;
+        public SnackbarMessageQueue messageQueue
+        {
+            get => _messageQueue;
+            set => Set(ref _messageQueue, value);
+        }
         private ObservableCollection<PddInfo> PddInfoColelction;
         private string _PDDInfoText;
         public string PDDInfoText
@@ -33,6 +40,8 @@ namespace Kursach.ViewModels
         public bool CanAddPDDInfoCommandExecute(object p) => true;
         public void OnAddPDDInfoCommandExecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;
             bool flag = true;
             foreach(var t in PddInfoColelction)
             {
@@ -44,6 +53,8 @@ namespace Kursach.ViewModels
             {
                 db.PddInfos.Add(new PddInfo { PddText = PDDInfoText });
                 db.SaveChanges();
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Информация успешно добавлена."));
+
             }
         }
     }

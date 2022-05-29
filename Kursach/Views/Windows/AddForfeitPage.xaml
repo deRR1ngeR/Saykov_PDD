@@ -6,7 +6,6 @@
     xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:jas="clr-namespace:Kursach.Models"
-    xmlns:local="clr-namespace:Kursach.Views"
     xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Kursach.ViewModels"
@@ -175,9 +174,10 @@
                     <RowDefinition Height="108*" />
                     <RowDefinition Height="78*" />
                     <RowDefinition Height="127*" />
-
-
                 </Grid.RowDefinitions>
+                <materialdesign:Snackbar Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"
+      x:Name="Snackbar"
+  MessageQueue="{Binding messageQueue}" />
                 <StackPanel
                     Grid.Row="0"
                     Grid.RowSpan="2"
@@ -230,7 +230,7 @@
                             Background="White">
                             <Binding Path="ThemId" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <jas:InputValidationRule ErrorMessage="Введите номер билета" />
+                                    <jas:InputValidationRule ErrorMessage="Введите id темы" />
                                 </Binding.ValidationRules>
                             </Binding>
                             <i:Interaction.Triggers>
@@ -341,8 +341,11 @@
                     Margin="0,0,25,15"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Orientation="Horizontal">
+                    Orientation="Vertical">
+
+                   
                     <Button Command="{Binding AddForfeitInfoCommand}" Content="Внести информацию" />
+                    
                 </StackPanel>
             </Grid>
         </Grid>

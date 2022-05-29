@@ -16,12 +16,18 @@ using System.Windows.Controls;
 using Kursach.Views.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Navigation;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows;
+using MaterialDesignThemes.Wpf;
 
 namespace Kursach.ViewModels
 {
     internal class MainWindowViewModel : ViewModel, INotifyPropertyChanged
     {
         private SolidColorBrush _bb;
+        
         public SolidColorBrush bb
         {
             get=> _bb;
@@ -119,6 +125,8 @@ namespace Kursach.ViewModels
         public ICommand? AuthButtonClickCommand { get; }
         private void OnAuthButtonClickCommandExecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;
             mWindow = (MainWindow)p;
             try
             {
@@ -140,34 +148,52 @@ namespace Kursach.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Проверьте введённые данные");
+                    message = "Неправильно введён логин или пароль.";
                     bb = Brushes.Red;
+                    Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+
                 }
+
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 bb = Brushes.Red;
-            }  
+                message = "Проверьте введённые данные.";
+                Task.Factory.StartNew(() => messageQueue.Enqueue(message));
+
+            }
+
         }
+          private SnackbarMessageQueue _messageQueue;
+        public SnackbarMessageQueue messageQueue
+        {
+            get => _messageQueue;
+            set => Set(ref _messageQueue, value);
+        }
+        
        
         private bool CanAuthButtonClickCommandExecute(object p) => true;
 
         public ICommand? RegUserCommand { get; }
         private void OnRegUserCommandExecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;   
                if(DataWorker.AddUser(Login,Password,Num, UserName, UserSurname))
             {
-                MessageBox.Show("Пользователь успешно добавлен.");
+                message = "Пользователь успешно добавлен.";
                     mWindow.RegistForm.Visibility = Visibility.Hidden;
                 mWindow.AuthForm.Visibility = Visibility.Visible;
-
             }
                else
             {
-                bb = Brushes.Red;
+                message = "Ошибка регистрации";
             }
+            //the message queue can be called from any thread
+            Task.Factory.StartNew(() => messageQueue.Enqueue(message));
         }
-
+     
+  
         private bool CanRegUserCommandExecute(object p) => true;
         #endregion
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

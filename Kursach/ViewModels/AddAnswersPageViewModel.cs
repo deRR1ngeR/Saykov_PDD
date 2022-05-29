@@ -2,6 +2,7 @@
 using Kursach.Models;
 using Kursach.Models.Base;
 using Kursach.ViewModels.Base;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,12 @@ namespace Kursach.ViewModels
     internal class AddAnswersPageViewModel: ViewModel
     {
         private readonly SAYKOV_PDDContext db;
+        private SnackbarMessageQueue _messageQueue;
+        public SnackbarMessageQueue messageQueue
+        {
+            get => _messageQueue;
+            set => Set(ref _messageQueue, value);
+        }
         private ObservableCollection<Question> _QstnCollection;
         public ObservableCollection<Question> QstnCollection
         {
@@ -110,6 +117,8 @@ namespace Kursach.ViewModels
         public bool CanAddAnswersCommandExecute(object p) => true;
         public void OnAddAnswersCommandExecuted(object p)
         {
+            messageQueue = new SnackbarMessageQueue();
+            string message;
             bool isOk = true;
             bool isRight = false;
             try
@@ -205,11 +214,16 @@ namespace Kursach.ViewModels
                 }
             }
             if(isOk == true)
-            db.SaveChanges();
+                {
+                        Task.Factory.StartNew(() => messageQueue.Enqueue("Ответы успешно добавлены"));
+                    db.SaveChanges();
+                }
+            
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Введите корректные данные");
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Введите корректные данные"));
+
             }
 
         }
